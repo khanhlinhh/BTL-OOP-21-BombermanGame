@@ -26,10 +26,12 @@ public class Balloon extends Entity {
 
     public void setDefaultValues() {
         speed = 1; // tốc độ di chuyển
-        direction = "right";
+        direction = RIGHT_DIRECTION;
     }
 
-    /** Hàm lấy ảnh */
+    /**
+     * Hàm lấy ảnh
+     */
     public void getPlayerImage() {
         try {
             left1 = ImageIO.read(getClass().getResourceAsStream(Sprite.balloon_left1));
@@ -43,23 +45,18 @@ public class Balloon extends Entity {
         }
     }
 
-    /** Hàm di chuyển. */
+    public int getNewDiretion() {
+        return (int) (Math.random() * 4 + 1);
+    }
+
+    /**
+     * Hàm di chuyển.
+     */
     public void update() {
-        if (collisionOn && direction == "left") {
-            direction = "right";
+        if (collisionOn) {
+            direction = getNewDiretion();
         }
-        if (collisionOn && direction == "right") {
-            direction = "left";
 
-        }
-        if (collisionOn && direction == "down") {
-            direction = "up";
-
-        }
-        if (collisionOn && direction == "up") {
-            direction = "down";
-
-        }
         // check va chạm
         collisionOn = false;
         gp.checkCollision.checkTile(this);
@@ -67,18 +64,10 @@ public class Balloon extends Entity {
         //Nếu va chạm
         if (!collisionOn) {
             switch (direction) {
-                case "up":
-                    worldY -= speed;
-                    break;
-                case "down":
-                    worldY += speed;
-                    break;
-                case "left":
-                    worldX -= speed;
-                    break;
-                case "right":
-                    worldX += speed;
-                    break;
+                case UP_DIRECTION -> worldY -= speed;
+                case DOWN_DIRECTION -> worldY += speed;
+                case LEFT_DIRECTION -> worldX -= speed;
+                case RIGHT_DIRECTION -> worldX += speed;
             }
         }
 
@@ -87,22 +76,22 @@ public class Balloon extends Entity {
         if (spriteCounter > 12) {
             if (spriteNum == 1) {
                 spriteNum = 2;
-            }
-            else if (spriteNum == 2) {
+            } else if (spriteNum == 2) {
                 spriteNum = 3;
-            }
-            else if (spriteNum == 3) {
+            } else if (spriteNum == 3) {
                 spriteNum = 1;
             }
             spriteCounter = 0;
         }
     }
 
-    /** Hàm render ra màn hình. */
+    /**
+     * Hàm render ra màn hình.
+     */
     public void draw(Graphics2D g2) {
         BufferedImage image = null;
-        switch(direction) {
-            case "down", "right":
+        switch (direction) {
+            case DOWN_DIRECTION, RIGHT_DIRECTION -> {
                 if (spriteNum == 1) {
                     image = right1;
                 }
@@ -112,9 +101,8 @@ public class Balloon extends Entity {
                 if (spriteNum == 3) {
                     image = right3;
                 }
-                break;
-
-            case "left", "up":
+            }
+            case LEFT_DIRECTION, UP_DIRECTION -> {
                 if (spriteNum == 1) {
                     image = left1;
                 }
@@ -124,7 +112,7 @@ public class Balloon extends Entity {
                 if (spriteNum == 3) {
                     image = left3;
                 }
-                break;
+            }
         }
 
         g2.drawImage(image, worldX, worldY, gp.tileSize, gp.tileSize, null);

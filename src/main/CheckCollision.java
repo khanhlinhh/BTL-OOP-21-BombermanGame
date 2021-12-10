@@ -23,7 +23,27 @@ public class CheckCollision {
         char tileChar1, tileChar2;
         int tileNum1, tileNum2;
         switch (entity.direction) {
-            case "up":
+            case 1: //LEFT_DIRECTION
+                entityLeftCol = (entityLeftWorldX - entity.speed)/gp.tileSize;
+                tileChar1 = gp.tileManager.mapTile[entityLeftCol][entityTopRow];
+                tileChar2 = gp.tileManager.mapTile[entityLeftCol][entityBottomRow];
+                tileNum1 = MapConverter.Converter(tileChar1);
+                tileNum2 = MapConverter.Converter(tileChar2);
+                if (gp.tileManager.tile[tileNum1].collision || gp.tileManager.tile[tileNum2].collision == true) {
+                    entity.collisionOn = true;
+                }
+                break;
+            case 2: //RIGHT_DIRECTION
+                entityRightCol = (entityRightWorldX + entity.speed)/gp.tileSize;
+                tileChar1 = gp.tileManager.mapTile[entityRightCol][entityTopRow];
+                tileChar2 = gp.tileManager.mapTile[entityRightCol][entityBottomRow];
+                tileNum1 = MapConverter.Converter(tileChar1);
+                tileNum2 = MapConverter.Converter(tileChar2);
+                if (gp.tileManager.tile[tileNum1].collision || gp.tileManager.tile[tileNum2].collision == true) {
+                    entity.collisionOn = true;
+                }
+                break;
+            case 3: //UP_DIRECTION
                 entityTopRow = (entityTopWorldY - entity.speed)/gp.tileSize;
                 tileChar1 = gp.tileManager.mapTile[entityLeftCol][entityTopRow];
                 tileChar2 = gp.tileManager.mapTile[entityRightCol][entityTopRow];
@@ -34,7 +54,7 @@ public class CheckCollision {
                     entity.collisionOn = true;
                 }
                 break;
-            case "down":
+            case 4: //DOWN_DIRECTION
                 entityBottomRow = (entityBottomWorldY + entity.speed)/gp.tileSize;
                 tileChar1 = gp.tileManager.mapTile[entityLeftCol][entityBottomRow];
                 tileChar2 = gp.tileManager.mapTile[entityRightCol][entityBottomRow];
@@ -44,26 +64,8 @@ public class CheckCollision {
                     entity.collisionOn = true;
                 }
                 break;
-            case "left":
-                entityLeftCol = (entityLeftWorldX - entity.speed)/gp.tileSize;
-                tileChar1 = gp.tileManager.mapTile[entityLeftCol][entityTopRow];
-                tileChar2 = gp.tileManager.mapTile[entityLeftCol][entityBottomRow];
-                tileNum1 = MapConverter.Converter(tileChar1);
-                tileNum2 = MapConverter.Converter(tileChar2);
-                if (gp.tileManager.tile[tileNum1].collision || gp.tileManager.tile[tileNum2].collision == true) {
-                    entity.collisionOn = true;
-                }
-                break;
-            case "right":
-                entityRightCol = (entityRightWorldX + entity.speed)/gp.tileSize;
-                tileChar1 = gp.tileManager.mapTile[entityRightCol][entityTopRow];
-                tileChar2 = gp.tileManager.mapTile[entityRightCol][entityBottomRow];
-                tileNum1 = MapConverter.Converter(tileChar1);
-                tileNum2 = MapConverter.Converter(tileChar2);
-                if (gp.tileManager.tile[tileNum1].collision || gp.tileManager.tile[tileNum2].collision == true) {
-                    entity.collisionOn = true;
-                }
-                break;
+
+
         }
     }
 }
