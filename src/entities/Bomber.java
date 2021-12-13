@@ -8,10 +8,16 @@ import javax.imageio.ImageIO;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
+import item.Item;
 
 public class Bomber extends Entity {
     GamePanel gp;
     KeyHandler keyHandler;
+    public static int coin = 0;
+    public static int score = 0;
+    public static int heart = 1;
+    public static int speed = 1;
+    public static boolean getItem = false;
 
     public Bomber(GamePanel gp, KeyHandler keyHandler) {
         this.gp = gp;
@@ -26,7 +32,6 @@ public class Bomber extends Entity {
     public void setDefaultValues() {
         worldX = gp.tileSize;
         worldY = gp.tileSize;
-        speed = 1; // tốc độ di chuyển
         direction = DOWN_DIRECTION;
     }
 
@@ -49,40 +54,39 @@ public class Bomber extends Entity {
         }
     }
 
-    /** Điểu khiển nhân vật. */
+    /**
+     * Điểu khiển nhân vật.
+     */
     public void update() {
         if (keyHandler.upPressed
-            || keyHandler.downPressed
-            || keyHandler.rightPressed
-            || keyHandler.leftPressed) {
+                || keyHandler.downPressed
+                || keyHandler.rightPressed
+                || keyHandler.leftPressed) {
             if (keyHandler.upPressed) {
                 direction = UP_DIRECTION;
             } else if (keyHandler.downPressed) {
                 direction = DOWN_DIRECTION;
             } else if (keyHandler.leftPressed) {
                 direction = LEFT_DIRECTION;
-            } else if (keyHandler.rightPressed) {
+            } else {
                 direction = RIGHT_DIRECTION;
             }
-             // check va chạm
+            // check va chạm
             collisionOn = false;
             gp.checkCollision.checkTile(this);
+
+            if(getItem){
+                Item.update();
+            }
+//            System.out.println("speed: "+ speed + " bom: " + Bomb.numOfBomb + " flame: " + Bomb.flame);
 
             //Nếu va chạm
             if (!collisionOn) {
                 switch (direction) {
-                    case UP_DIRECTION:
-                        worldY -= speed;
-                        break;
-                    case DOWN_DIRECTION:
-                        worldY += speed;
-                        break;
-                    case LEFT_DIRECTION:
-                        worldX -= speed;
-                        break;
-                    case RIGHT_DIRECTION:
-                        worldX += speed;
-                        break;
+                    case UP_DIRECTION -> worldY -= speed;
+                    case DOWN_DIRECTION -> worldY += speed;
+                    case LEFT_DIRECTION -> worldX -= speed;
+                    case RIGHT_DIRECTION -> worldX += speed;
                 }
             }
 
@@ -91,11 +95,9 @@ public class Bomber extends Entity {
             if (spriteCounter > 12) {
                 if (spriteNum == 1) {
                     spriteNum = 2;
-                }
-                else if (spriteNum == 2) {
+                } else if (spriteNum == 2) {
                     spriteNum = 3;
-                }
-                else if (spriteNum == 3) {
+                } else if (spriteNum == 3) {
                     spriteNum = 1;
                 }
                 spriteCounter = 0;
@@ -103,10 +105,12 @@ public class Bomber extends Entity {
         }
     }
 
-    /** Render ra màn hình. */
+    /**
+     * Render ra màn hình.
+     */
     public void draw(Graphics2D g2) {
         BufferedImage image = null;
-        switch(direction) {
+        switch (direction) {
             case UP_DIRECTION:
                 if (spriteNum == 1) {
                     image = up1;
@@ -117,7 +121,7 @@ public class Bomber extends Entity {
                 if (spriteNum == 3) {
                     image = up3;
                 }
-            break;
+                break;
 
             case DOWN_DIRECTION:
                 if (spriteNum == 1) {
@@ -129,7 +133,7 @@ public class Bomber extends Entity {
                 if (spriteNum == 3) {
                     image = down3;
                 }
-            break;
+                break;
 
             case LEFT_DIRECTION:
                 if (spriteNum == 1) {
@@ -141,7 +145,7 @@ public class Bomber extends Entity {
                 if (spriteNum == 3) {
                     image = left3;
                 }
-            break;
+                break;
 
             case RIGHT_DIRECTION:
                 if (spriteNum == 1) {
@@ -153,7 +157,7 @@ public class Bomber extends Entity {
                 if (spriteNum == 3) {
                     image = right3;
                 }
-            break;
+                break;
         }
 
         g2.drawImage(image, worldX, worldY, gp.tileSize, gp.tileSize, null);
