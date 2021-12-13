@@ -25,14 +25,36 @@ public class TileManager {
     /** Đặt từng phần tử tile. */
     public void getTileImage() {
         try {
-            tile[0] = new Tile(); // đá
-            tile[0].image = ImageIO.read(getClass().getResourceAsStream(Sprite.brick));
-            tile[0].collision = true;
-            tile[1] = new Tile(); // tường
-            tile[1].image = ImageIO.read(getClass().getResourceAsStream(Sprite.wall));
-            tile[1].collision = true;
-            tile[2] = new Tile(); // cỏ
-            tile[2].image = ImageIO.read(getClass().getResourceAsStream(Sprite.grass));
+            tile[0] = new Tile(); // heartItem
+            tile[0].image = ImageIO.read(getClass().getResourceAsStream(Sprite.heart));
+            tile[0].isItem = true;
+
+            tile[1] = new Tile(); // bombItem
+            tile[1].image = ImageIO.read(getClass().getResourceAsStream(Sprite.bombItem));
+            tile[1].isItem = true;
+
+            tile[2] = new Tile(); // SpeedItem
+            tile[2].image = ImageIO.read(getClass().getResourceAsStream(Sprite.speedItem));
+            tile[2].isItem = true;
+
+            tile[3] = new Tile(); // flameItem
+            tile[3].image = ImageIO.read(getClass().getResourceAsStream(Sprite.flameItem));
+            tile[3].isItem = true;
+
+            tile[4] = new Tile(); // coin
+            tile[4].image = ImageIO.read(getClass().getResourceAsStream(Sprite.coin));
+            tile[4].isItem = true;
+
+            tile[5] = new Tile(); // wall
+            tile[5].image = ImageIO.read(getClass().getResourceAsStream(Sprite.wall));
+            tile[5].collision = true;
+
+            tile[6] = new Tile(); // brick
+            tile[6].image = ImageIO.read(getClass().getResourceAsStream(Sprite.brick));
+            tile[6].collision = true;
+
+            tile[7] = new Tile(); // grass
+            tile[7].image = ImageIO.read(getClass().getResourceAsStream(Sprite.grass));
         } catch (IOException e) {
             e.printStackTrace();
         }

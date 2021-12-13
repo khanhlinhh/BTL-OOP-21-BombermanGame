@@ -73,5 +73,16 @@ public class Sprite {
     public static final String bomb1 = "/image/tiles/bomb/bomb_1.png";
     public static final String bomb2 = "/image/tiles/bomb/bomb_2.png";
 
+     /*
+	|--------------------------------------------------------------------------
+	| items
+	|--------------------------------------------------------------------------
+	 */
+    public static final String speedItem = "/image/tiles/items/powerup_speed.png";
+    public static final String bombItem = "/image/tiles/items/powerup_bombs.png";
+    public static final String flameItem = "/image/tiles/items/powerup_flames.png";
+    public static final String coin = "";
+    public static final String heart = "";
+
 
 }
