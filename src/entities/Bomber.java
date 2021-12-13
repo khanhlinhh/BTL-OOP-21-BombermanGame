@@ -1,5 +1,6 @@
 package entities;
 
+import item.Bomb;
 import main.GamePanel;
 import main.KeyHandler;
 import graphics.Sprite;
@@ -8,16 +9,19 @@ import javax.imageio.ImageIO;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
+import java.util.ArrayList;
 
 public class Bomber extends Entity {
     GamePanel gp;
     KeyHandler keyHandler;
+    Thread bombThread;
+    ArrayList<Bomb> bombs = new ArrayList<>();
 
     public Bomber(GamePanel gp, KeyHandler keyHandler) {
         this.gp = gp;
         this.keyHandler = keyHandler;
         //giới hạn phạm vi va chạm của nhân vật
-        solidArea = new Rectangle(5, 18, 18, 25);
+        solidArea = new Rectangle(10, 18, 18, 25);
 
         setDefaultValues();
         getPlayerImage();
@@ -26,7 +30,7 @@ public class Bomber extends Entity {
     public void setDefaultValues() {
         worldX = gp.tileSize;
         worldY = gp.tileSize;
-        speed = 1; // tốc độ di chuyển
+        speed = 3; // tốc độ di chuyển
         direction = DOWN_DIRECTION;
     }
 
@@ -54,7 +58,8 @@ public class Bomber extends Entity {
         if (keyHandler.upPressed
             || keyHandler.downPressed
             || keyHandler.rightPressed
-            || keyHandler.leftPressed) {
+            || keyHandler.leftPressed
+            || keyHandler.spacePressed) {
             if (keyHandler.upPressed) {
                 direction = UP_DIRECTION;
             } else if (keyHandler.downPressed) {
@@ -63,6 +68,8 @@ public class Bomber extends Entity {
                 direction = LEFT_DIRECTION;
             } else if (keyHandler.rightPressed) {
                 direction = RIGHT_DIRECTION;
+            } else if (keyHandler.spacePressed) {
+                bombs.add(new Bomb(this.gp, this));
             }
              // check va chạm
             collisionOn = false;
@@ -99,6 +106,11 @@ public class Bomber extends Entity {
                     spriteNum = 1;
                 }
                 spriteCounter = 0;
+            }
+        }
+        if (!bombs.isEmpty()) {
+            for (Bomb bomb : bombs) {
+                bomb.update();
             }
         }
     }
@@ -157,6 +169,10 @@ public class Bomber extends Entity {
         }
 
         g2.drawImage(image, worldX, worldY, gp.tileSize, gp.tileSize, null);
-
+        if (!bombs.isEmpty()) {
+            for (Bomb bomb : bombs) {
+                bomb.draw(g2);
+            }
+        }
     }
 }
