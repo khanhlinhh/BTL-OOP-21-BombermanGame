@@ -12,14 +12,14 @@ public class Entity {
       left1, left2, left3,
       right1, right2, right3;
 
-  public final int LEFT_DIRECTION = 1;
-  public final int RIGHT_DIRECTION = 2;
-  public final int UP_DIRECTION = 3;
-  public final int DOWN_DIRECTION = 4;
-
-  public int direction ;
+  public int direction; // Hướng đi (điều khiển, check va chạm)
   public int spriteCounter = 0;
   public int spriteNum = 1;
   public Rectangle solidArea; // phạm vi va chạm
   public boolean collisionOn = false;
+
+  public static final int UP_DIRECTION = 1;
+  public static final int DOWN_DIRECTION = 2;
+  public static final int LEFT_DIRECTION = 3;
+  public static final int RIGHT_DIRECTION = 4;
 }

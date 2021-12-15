@@ -2,17 +2,17 @@ package entities.enemies;
 
 import entities.Entity;
 import graphics.Sprite;
+import item.Item;
+import item.wall.Brick;
 import main.GamePanel;
 
 import javax.imageio.ImageIO;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
-import java.util.Objects;
 
 public class Oneal extends Entity {
-    GamePanel gp;
-
+    private GamePanel gp;
     public Oneal(GamePanel gp, int xUnit, int yUnit) {
         this.gp = gp;
         //giới hạn phạm vi va chạm của vật
@@ -57,6 +57,14 @@ public class Oneal extends Entity {
         // check va chạm
         collisionOn = false;
         gp.checkCollision.checkTile(this);
+        for (Item item : gp.tileManager.getItems()) {
+            if (item instanceof Brick) {
+                gp.checkCollision.checkBrick(this, item);
+                if (collisionOn) {
+                    break;
+                }
+            }
+        }
 
         //Nếu va chạm
         if (!collisionOn) {
@@ -112,7 +120,7 @@ public class Oneal extends Entity {
             }
         }
 
-        g2.drawImage(image, worldX, worldY, gp.tileSize, gp.tileSize, null);
+        g2.drawImage(image, worldX, worldY, GamePanel.tileSize, GamePanel.tileSize, null);
 
     }
 }
