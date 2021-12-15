@@ -36,6 +36,7 @@ public class Bomber extends Entity {
     worldY = GamePanel.tileSize;
     speed = 2; // tốc độ di chuyển
     direction = DOWN_DIRECTION;
+    isDead = false;
   }
 
   public void getPlayerImage() {
@@ -76,13 +77,23 @@ public class Bomber extends Entity {
       collisionOn = false;
       gp.checkCollision.checkTile(this);
       for (Item item : gp.tileManager.getItems()) {
-        if (item instanceof Brick) {
-          gp.checkCollision.checkBrick(this, item);
+        if (item instanceof Brick || item instanceof Bomb) {
+          gp.checkCollision.checkBrickandBomb(this, item);
           if (collisionOn) {
             break;
           }
         }
       }
+
+      if (gp.bomber.getBombs() != null) {
+        for (Bomb bomb : gp.bomber.getBombs()) {
+          gp.checkCollision.checkBrickandBomb(this, bomb);
+          if (collisionOn) {
+            break;
+          }
+        }
+      }
+
       // Nếu va chạm
       if (!collisionOn) {
         switch (direction) {
@@ -198,5 +209,9 @@ public class Bomber extends Entity {
 
   public void setFlameSize(int flameSize) {
     this.flameSize = flameSize;
+  }
+
+  public ArrayList<Bomb> getBombs() {
+    return bombs;
   }
 }

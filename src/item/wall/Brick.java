@@ -36,7 +36,6 @@ public class Brick extends Item {
 
     @Override
     public void update() {
-        gp.checkCollision.checkBrick(gp.bomber, this);
         if (collision) {
             spriteCounter++;
             if (spriteCounter > 12) {

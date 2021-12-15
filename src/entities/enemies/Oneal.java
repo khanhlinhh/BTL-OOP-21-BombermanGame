@@ -3,6 +3,7 @@ package entities.enemies;
 import entities.Entity;
 import graphics.Sprite;
 import item.Item;
+import item.bombHandler.Bomb;
 import item.wall.Brick;
 import main.GamePanel;
 
@@ -16,7 +17,7 @@ public class Oneal extends Entity {
     public Oneal(GamePanel gp, int xUnit, int yUnit) {
         this.gp = gp;
         //giới hạn phạm vi va chạm của vật
-        solidArea = new Rectangle(0, 0, 45, 45);
+        solidArea = new Rectangle(0, 0, 42, 42);
 
         worldX = xUnit; //Toạ độ xuất hiện (tileSize * thứ tự cột)
         worldY = yUnit; //Toạ độ xuất hiện (tileSize * thứ tự hàng)
@@ -28,6 +29,7 @@ public class Oneal extends Entity {
     public void setDefaultValues() {
         speed = 2; // tốc độ di chuyển
         direction = RIGHT_DIRECTION;
+        isDead = false;
     }
 
     /** Hàm lấy ảnh */
@@ -58,8 +60,17 @@ public class Oneal extends Entity {
         collisionOn = false;
         gp.checkCollision.checkTile(this);
         for (Item item : gp.tileManager.getItems()) {
-            if (item instanceof Brick) {
-                gp.checkCollision.checkBrick(this, item);
+            if (item instanceof Brick || item instanceof Bomb) {
+                gp.checkCollision.checkBrickandBomb(this, item);
+                if (collisionOn) {
+                    break;
+                }
+            }
+        }
+
+        if (gp.bomber.getBombs() != null) {
+            for (Bomb bomb : gp.bomber.getBombs()) {
+                gp.checkCollision.checkBrickandBomb(this, bomb);
                 if (collisionOn) {
                     break;
                 }

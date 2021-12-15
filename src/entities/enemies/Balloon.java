@@ -3,6 +3,7 @@ package entities.enemies;
 import entities.Entity;
 import graphics.Sprite;
 import item.Item;
+import item.bombHandler.Bomb;
 import item.wall.Brick;
 import main.GamePanel;
 
@@ -17,7 +18,7 @@ public class Balloon extends Entity {
     public Balloon(GamePanel gp, int xUnit, int yUnit) {
         this.gp = gp;
         //giới hạn phạm vi va chạm của vật
-        solidArea = new Rectangle(0, 0, 45, 45);
+        solidArea = new Rectangle(0, 0, 42, 42);
 
         worldX = xUnit; //Toạ độ xuất hiện (tileSize * thứ tự cột)
         worldY = yUnit; //Toạ độ xuất hiện (tileSize * thứ tự hàng)
@@ -29,6 +30,7 @@ public class Balloon extends Entity {
     public void setDefaultValues() {
         speed = 1; // tốc độ di chuyển
         direction = RIGHT_DIRECTION;
+        isDead = false;
     }
 
     /**
@@ -64,13 +66,21 @@ public class Balloon extends Entity {
         gp.checkCollision.checkTile(this);
         for (Item item : gp.tileManager.getItems()) {
             if (item instanceof Brick) {
-                gp.checkCollision.checkBrick(this, item);
+                gp.checkCollision.checkBrickandBomb(this, item);
                 if (collisionOn) {
                     break;
                 }
             }
         }
 
+        if (gp.bomber.getBombs() != null) {
+            for (Bomb bomb : gp.bomber.getBombs()) {
+                gp.checkCollision.checkBrickandBomb(this, bomb);
+                if (collisionOn) {
+                    break;
+                }
+            }
+        }
 
         //Nếu va chạm
         if (!collisionOn) {

@@ -1,8 +1,10 @@
 package main;
 
+import entities.Bomber;
 import entities.Entity;
 import graphics.MapConverter;
 import item.Item;
+import item.bombHandler.Bomb;
 
 public class CheckCollision {
   GamePanel gp;
@@ -86,12 +88,27 @@ public class CheckCollision {
     }
   }
 
-  public void checkBrick(Entity entity, Item item) {
-    int entityLeft = entity.worldX + entity.solidArea.x + 4;
-    int entityRight = entity.worldX + entity.solidArea.y + entity.solidArea.width + 4;
-    int entityTop = entity.worldY + entity.solidArea.y + 4;
-    int entityBottom = entity.worldY + entity.solidArea.y + entity.solidArea.height + 4;
-    int speed = gp.bomber.speed;
+  public void checkBrickandBomb(Entity entity, Item item) {
+    int entityLeft = entity.worldX + entity.solidArea.x;
+    int entityRight = entity.worldX + entity.solidArea.y + entity.solidArea.width;
+    int entityTop = entity.worldY + entity.solidArea.y;
+    int entityBottom = entity.worldY + entity.solidArea.y + entity.solidArea.height;
+
+    int speed = 2;
+    if (entity instanceof Bomber) {
+      speed = gp.bomber.speed;
+      entityLeft -= 2;
+      entityRight += 3;
+      entityTop -= 1;
+      entityBottom += 3;
+    }
+    if (item instanceof Bomb) {
+      entityLeft = entity.worldX - speed;
+      entityRight = entityLeft + GamePanel.tileSize + speed;
+      entityTop = entity.worldY - speed;
+      entityBottom = entityTop + GamePanel.tileSize + speed;
+    }
+
     switch (entity.direction) {
       case Entity.UP_DIRECTION:
         if (entityTop < item.worldY + GamePanel.tileSize && entityTop > item.worldY) {
@@ -123,7 +140,7 @@ public class CheckCollision {
       case Entity.RIGHT_DIRECTION:
         if (entityRight < item.worldX + GamePanel.tileSize && entityRight > item.worldX) {
           if (item.worldY + GamePanel.tileSize - speed > entityTop && item.worldY + speed < entityTop) {
-            entity.collisionOn = true; // LEFT
+            entity.collisionOn = true;
           } else if (item.worldY + GamePanel.tileSize - speed > entityBottom && item.worldY + speed < entityBottom) {
             entity.collisionOn = true;
           }

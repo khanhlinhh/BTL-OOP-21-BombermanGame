@@ -17,6 +17,7 @@ public class Entity {
   public int spriteNum = 1;
   public Rectangle solidArea; // phạm vi va chạm
   public boolean collisionOn = false;
+  public boolean isDead = false;
 
   public static final int UP_DIRECTION = 1;
   public static final int DOWN_DIRECTION = 2;
