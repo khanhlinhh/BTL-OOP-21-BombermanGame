@@ -32,6 +32,7 @@ public class CheckBombExplosion {
 //    }
 
     public void checkBombDestroy(Brick brick, Bomb bomb) {
+        int flameSize = bomb.bomber.getFlameSize();
         int brickLeft = brick.worldX;
         int brickTop = brick.worldY;
         int brickBottom = brickTop + GamePanel.tileSize;
@@ -41,11 +42,44 @@ public class CheckBombExplosion {
         int bombBottom = bombTop + GamePanel.tileSize;
         int bombLeft = bomb.worldX;
         int bombRight = bombLeft + GamePanel.tileSize;
-
-        if ((brickBottom == bombTop || brickTop == bombBottom) && brickLeft == bombLeft && brickRight == bombRight) {
-            brick.collision = true;
-        } else if ((brickLeft == bombRight || brickRight == bombLeft) && brickBottom == bombBottom && brickTop == bombTop) {
-            brick.collision = true;
+        // TOP
+        for (int i = 0; i < flameSize; i++) {
+            int bombTopUp = bombTop - (GamePanel.tileSize * i);
+            if (brickBottom == bombTopUp && brickLeft == bombLeft && brickRight == bombRight) {
+                brick.collision = true;
+                break;
+            }
         }
+
+        // DOWN
+        for (int i = 0; i < flameSize; i++) {
+            int bombBottomDown = bombBottom + (GamePanel.tileSize * i);
+            if (brickTop == bombBottomDown && brickLeft == bombLeft && brickRight == bombRight) {
+                brick.collision = true;
+                break;
+            }
+        }
+
+        // LEFT
+        for (int i = 0; i < flameSize; i++) {
+            int bombLeftLeft = bombLeft - (GamePanel.tileSize * i);
+            if (brickRight == bombLeftLeft  && brickBottom == bombBottom && brickTop == bombTop) {
+                brick.collision = true;
+                break;
+            }
+        }
+
+        // RIGHT
+        for (int i = 0; i < flameSize; i++) {
+            int bombRightRight = bombRight + (GamePanel.tileSize * i);
+            if (brickLeft == bombRightRight  && brickBottom == bombBottom && brickTop == bombTop) {
+                brick.collision = true;
+                break;
+            }
+        }
+    }
+
+    public void checkFlameSize(int[] flameArea, Bomb bomb, Brick brick) {
+
     }
 }
