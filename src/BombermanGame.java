@@ -1,4 +1,5 @@
 import main.GamePanel;
+import main.Sound;
 
 import javax.swing.*;
 
@@ -19,5 +20,6 @@ public class BombermanGame {
 
     gamePanel.setUpGame();
     gamePanel.startGameThread();
+    Sound.playBackGround();
   }
 }

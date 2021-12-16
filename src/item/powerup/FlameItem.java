@@ -3,6 +3,7 @@ package item.powerup;
 import graphics.Sprite;
 import item.Item;
 import main.GamePanel;
+import main.Sound;
 
 import javax.imageio.ImageIO;
 import java.awt.*;
@@ -32,6 +33,7 @@ public class FlameItem extends Item {
     public void update() {
         gp.checkCollision.checkPowerUp(gp.bomber, this);
         if (collision) {
+            Sound.playsound(Sound.get_item);
             int flameSize = gp.bomber.getFlameSize() + 1;
             gp.bomber.setFlameSize(flameSize);
             isDisappeared = true;

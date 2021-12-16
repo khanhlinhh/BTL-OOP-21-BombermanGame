@@ -6,6 +6,7 @@ import item.bombHandler.Bomb;
 import item.wall.Brick;
 import main.GamePanel;
 import main.KeyHandler;
+import main.Sound;
 
 import javax.imageio.ImageIO;
 import java.awt.*;
@@ -16,6 +17,7 @@ import java.util.ArrayList;
 public class Bomber extends Entity {
   private int numOfBomb = 1;
   private int flameSize = 1;
+  private int score = 0;
 
   public GamePanel gp;
   private KeyHandler keyHandler;
@@ -60,6 +62,7 @@ public class Bomber extends Entity {
 
   /** Điểu khiển nhân vật. */
   public void update() {
+//    System.out.println(score);
     if (keyHandler.upPressed
         || keyHandler.downPressed
         || keyHandler.rightPressed
@@ -123,6 +126,7 @@ public class Bomber extends Entity {
     }
     if (keyHandler.spacePressed) {
       if (bombs.size() < numOfBomb) {
+        Sound.playsound(Sound.drop_bomb);
         bombs.add(new Bomb(this.gp,this));
       }
     }
@@ -209,6 +213,14 @@ public class Bomber extends Entity {
 
   public void setFlameSize(int flameSize) {
     this.flameSize = flameSize;
+  }
+
+  public int getScore() {
+    return score;
+  }
+
+  public void setScore(int score) {
+    this.score = score;
   }
 
   public ArrayList<Bomb> getBombs() {

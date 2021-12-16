@@ -5,6 +5,7 @@ import graphics.Sprite;
 import item.Item;
 import item.wall.Brick;
 import main.GamePanel;
+import main.Sound;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
@@ -59,6 +60,7 @@ public class Bomb extends Item {
   @Override
   public void update() {
     if (countExplode == 0 && flame == null) {
+      Sound.playsound(Sound.bomb_explode);
       exploded = true;
       flame = new Flame(this);
     } else {

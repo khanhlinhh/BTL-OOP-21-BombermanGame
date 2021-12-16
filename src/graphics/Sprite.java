@@ -5,6 +5,8 @@ public class Sprite {
   public static final char bombItemChar = 'b';
   public static final char flameItemChar = 'f';
   public static final char brickChar = '*';
+  public static final char coinchar = 'c';
+
 
   /*
   |--------------------------------------------------------------------------
@@ -111,6 +113,6 @@ public class Sprite {
   public static final String speedItem = "/image/tiles/powerups/powerup_speed.png";
   public static final String bombItem = "/image/tiles/powerups/powerup_bombs.png";
   public static final String flameItem = "/image/tiles/powerups/powerup_flames.png";
-  public static final String coin = "";
-  public static final String heart = "";
+  public static final String coin = "/image/tiles/powerups/coin.png";
+  public static final String heart = "/image/tiles/powerups/heart.png";
 }
