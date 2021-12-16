@@ -16,16 +16,16 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 public class Bomb extends Item {
+  public boolean exploded = false;
+  public int[] flameArea;
+  Bomber bomber;
   private BufferedImage bomb1, bomb2, bomb3;
   private int countExplode = 2;
   private Flame flame;
-  public boolean exploded = false;
-  Bomber bomber;
   private Timer timer;
   private GamePanel gp;
   private ArrayList<Item> items = new ArrayList<>();
   private ArrayList<Entity> entities = new ArrayList<>();
-  public int[] flameArea;
 
   public Bomb(GamePanel gp, Bomber bomber) {
     this.gp = gp;
@@ -33,18 +33,33 @@ public class Bomb extends Item {
     items = gp.tileManager.getItems();
     entities = gp.tileManager.getEntities();
     checkBombExplosion = new CheckBombExplosion(gp);
-    flameArea = new int[]{this.bomber.getFlameSize(), this.bomber.getFlameSize(), this.bomber.getFlameSize(), this.bomber.getFlameSize()};
+    flameArea =
+        new int[] {
+          this.bomber.getFlameSize(),
+          this.bomber.getFlameSize(),
+          this.bomber.getFlameSize(),
+          this.bomber.getFlameSize()
+        };
     worldX = (bomber.worldX + bomber.solidArea.x) / GamePanel.tileSize * GamePanel.tileSize;
     worldY = (bomber.worldY + bomber.solidArea.height) / GamePanel.tileSize * GamePanel.tileSize;
-    timer = new Timer(1000, e -> {
-      if (countExplode > 0) {
-        countExplode--;
-      } else {
-        timer.stop();
-      }
-    });
+    timer =
+        new Timer(
+            1000,
+            e -> {
+              if (countExplode > 0) {
+                countExplode--;
+              } else {
+                timer.stop();
+              }
+            });
     timer.start();
-    flameArea = new int[]{this.bomber.getFlameSize(), this.bomber.getFlameSize(), this.bomber.getFlameSize(), this.bomber.getFlameSize()};
+    flameArea =
+        new int[] {
+          this.bomber.getFlameSize(),
+          this.bomber.getFlameSize(),
+          this.bomber.getFlameSize(),
+          this.bomber.getFlameSize()
+        };
     checkBombExplosion.checkFlameArea(this.flameArea, this);
     getImage();
   }
@@ -81,7 +96,7 @@ public class Bomb extends Item {
     }
     if (exploded) {
       if (items != null) {
-        for(Item item : items) {
+        for (Item item : items) {
           if (item instanceof Brick) {
             Brick brick = (Brick) item;
             checkBombExplosion.checkBombDestroy(brick, this);
@@ -89,7 +104,7 @@ public class Bomb extends Item {
         }
       }
       if (entities != null) {
-        for(Entity entity : entities) {
+        for (Entity entity : entities) {
           checkBombExplosion.checkBombExplosionCollision(entity, this);
         }
       }

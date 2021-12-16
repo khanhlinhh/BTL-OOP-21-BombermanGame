@@ -7,12 +7,12 @@ import javax.swing.*;
 import java.awt.*;
 
 public class GamePanel extends JPanel implements Runnable {
-  public final int maxScreenCol = 31;
-  public final int maxScreenRow = 13;
   // Screen settings
-  public final static int originalTileSize = 16;
+  public static final int originalTileSize = 16;
   public static final int scale = 3;
   public static final int tileSize = originalTileSize * scale;
+  public final int maxScreenCol = 31;
+  public final int maxScreenRow = 13;
   public final int screenWidth = tileSize * maxScreenCol;
   public final int screenHeight = tileSize * maxScreenRow;
 
@@ -75,11 +75,6 @@ public class GamePanel extends JPanel implements Runnable {
     super.paintComponent(g);
     Graphics2D g2 = (Graphics2D) g;
     tileManager.draw(g2);
-    //        for (int i = 0; i < items.length; i++) {
-    //            if (items[i] != null) {
-    //                items[i].draw(g2, this);
-    //            }
-    //        }
     assetSetter.draw(g2);
     bomber.draw(g2);
     g2.dispose();

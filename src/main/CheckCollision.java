@@ -33,8 +33,7 @@ public class CheckCollision {
         tileNum1 = MapConverter.Converter(tileChar1);
         tileNum2 = MapConverter.Converter(tileChar2);
 
-        if (gp.tileManager.tile[tileNum1].collision
-            || gp.tileManager.tile[tileNum2].collision) {
+        if (gp.tileManager.tile[tileNum1].collision || gp.tileManager.tile[tileNum2].collision) {
           entity.collisionOn = true;
         }
         break;
@@ -44,8 +43,7 @@ public class CheckCollision {
         tileChar2 = gp.tileManager.mapTile[entityRightCol][entityBottomRow];
         tileNum1 = MapConverter.Converter(tileChar1);
         tileNum2 = MapConverter.Converter(tileChar2);
-        if (gp.tileManager.tile[tileNum1].collision
-            || gp.tileManager.tile[tileNum2].collision) {
+        if (gp.tileManager.tile[tileNum1].collision || gp.tileManager.tile[tileNum2].collision) {
           entity.collisionOn = true;
         }
         break;
@@ -55,8 +53,7 @@ public class CheckCollision {
         tileChar2 = gp.tileManager.mapTile[entityLeftCol][entityBottomRow];
         tileNum1 = MapConverter.Converter(tileChar1);
         tileNum2 = MapConverter.Converter(tileChar2);
-        if (gp.tileManager.tile[tileNum1].collision
-            || gp.tileManager.tile[tileNum2].collision) {
+        if (gp.tileManager.tile[tileNum1].collision || gp.tileManager.tile[tileNum2].collision) {
           entity.collisionOn = true;
         }
         break;
@@ -66,8 +63,7 @@ public class CheckCollision {
         tileChar2 = gp.tileManager.mapTile[entityRightCol][entityBottomRow];
         tileNum1 = MapConverter.Converter(tileChar1);
         tileNum2 = MapConverter.Converter(tileChar2);
-        if (gp.tileManager.tile[tileNum1].collision
-            || gp.tileManager.tile[tileNum2].collision) {
+        if (gp.tileManager.tile[tileNum1].collision || gp.tileManager.tile[tileNum2].collision) {
           entity.collisionOn = true;
         }
         break;
@@ -113,36 +109,44 @@ public class CheckCollision {
     switch (entity.direction) {
       case Entity.UP_DIRECTION:
         if (entityTop < item.worldY + GamePanel.tileSize && entityTop > item.worldY) {
-          if (item.worldX + GamePanel.tileSize - speed > entityLeft && item.worldX + speed < entityLeft) {
+          if (item.worldX + GamePanel.tileSize - speed > entityLeft
+              && item.worldX + speed < entityLeft) {
             entity.collisionOn = true; // LEFT
-          } else if (item.worldX + GamePanel.tileSize - speed > entityRight && item.worldX + speed < entityRight) {
+          } else if (item.worldX + GamePanel.tileSize - speed > entityRight
+              && item.worldX + speed < entityRight) {
             entity.collisionOn = true;
           }
         }
         break;
       case Entity.DOWN_DIRECTION:
         if (entityBottom < item.worldY + GamePanel.tileSize && entityBottom > item.worldY) {
-          if (item.worldX + GamePanel.tileSize - speed > entityLeft && item.worldX + speed < entityLeft) {
+          if (item.worldX + GamePanel.tileSize - speed > entityLeft
+              && item.worldX + speed < entityLeft) {
             entity.collisionOn = true; // LEFT
-          } else if (item.worldX + GamePanel.tileSize - speed > entityRight && item.worldX + speed < entityRight) {
+          } else if (item.worldX + GamePanel.tileSize - speed > entityRight
+              && item.worldX + speed < entityRight) {
             entity.collisionOn = true;
           }
         }
         break;
       case Entity.LEFT_DIRECTION:
         if (entityLeft < item.worldX + GamePanel.tileSize && entityLeft > item.worldX) {
-          if (item.worldY + GamePanel.tileSize - speed >= entityTop && item.worldY + speed < entityTop) {
+          if (item.worldY + GamePanel.tileSize - speed >= entityTop
+              && item.worldY + speed < entityTop) {
             entity.collisionOn = true; // LEFT
-          } else if (item.worldY + GamePanel.tileSize - speed > entityBottom && item.worldY + speed < entityBottom) {
+          } else if (item.worldY + GamePanel.tileSize - speed > entityBottom
+              && item.worldY + speed < entityBottom) {
             entity.collisionOn = true;
           }
         }
         break;
       case Entity.RIGHT_DIRECTION:
         if (entityRight < item.worldX + GamePanel.tileSize && entityRight > item.worldX) {
-          if (item.worldY + GamePanel.tileSize - speed > entityTop && item.worldY + speed < entityTop) {
+          if (item.worldY + GamePanel.tileSize - speed > entityTop
+              && item.worldY + speed < entityTop) {
             entity.collisionOn = true;
-          } else if (item.worldY + GamePanel.tileSize - speed > entityBottom && item.worldY + speed < entityBottom) {
+          } else if (item.worldY + GamePanel.tileSize - speed > entityBottom
+              && item.worldY + speed < entityBottom) {
             entity.collisionOn = true;
           }
         }
@@ -170,4 +174,3 @@ public class CheckCollision {
     }
   }
 }
-

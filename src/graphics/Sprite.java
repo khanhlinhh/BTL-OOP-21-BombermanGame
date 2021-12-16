@@ -88,26 +88,41 @@ public class Sprite {
   public static final String exploded = "/image/tiles/explosion/bomb_exploded.png";
   public static final String exploded1 = "/image/tiles/explosion/bomb_exploded1.png";
   public static final String exploded2 = "/image/tiles/explosion/bomb_exploded2.png";
-  public static final String explosion_horizontal = "/image/tiles/explosion/explosion_horizontal.png";
-  public static final String explosion_horizontal1 = "/image/tiles/explosion/explosion_horizontal1.png";
-  public static final String explosion_horizontal2 = "/image/tiles/explosion/explosion_horizontal2.png";
-  public static final String explosion_horizontal_left_last = "/image/tiles/explosion/explosion_horizontal_left_last.png";
-  public static final String explosion_horizontal_left_last1 = "/image/tiles/explosion/explosion_horizontal_left_last1.png";
-  public static final String explosion_horizontal_left_last2 = "/image/tiles/explosion/explosion_horizontal_left_last2.png";
-  public static final String explosion_horizontal_right_last = "/image/tiles/explosion/explosion_horizontal_right_last.png";
-  public static final String explosion_horizontal_right_last1 = "/image/tiles/explosion/explosion_horizontal_right_last1.png";
-  public static final String explosion_horizontal_right_last2 = "/image/tiles/explosion/explosion_horizontal_right_last2.png";
+  public static final String explosion_horizontal =
+      "/image/tiles/explosion/explosion_horizontal.png";
+  public static final String explosion_horizontal1 =
+      "/image/tiles/explosion/explosion_horizontal1.png";
+  public static final String explosion_horizontal2 =
+      "/image/tiles/explosion/explosion_horizontal2.png";
+  public static final String explosion_horizontal_left_last =
+      "/image/tiles/explosion/explosion_horizontal_left_last.png";
+  public static final String explosion_horizontal_left_last1 =
+      "/image/tiles/explosion/explosion_horizontal_left_last1.png";
+  public static final String explosion_horizontal_left_last2 =
+      "/image/tiles/explosion/explosion_horizontal_left_last2.png";
+  public static final String explosion_horizontal_right_last =
+      "/image/tiles/explosion/explosion_horizontal_right_last.png";
+  public static final String explosion_horizontal_right_last1 =
+      "/image/tiles/explosion/explosion_horizontal_right_last1.png";
+  public static final String explosion_horizontal_right_last2 =
+      "/image/tiles/explosion/explosion_horizontal_right_last2.png";
   public static final String explosion_vertical = "/image/tiles/explosion/explosion_vertical.png";
   public static final String explosion_vertical1 = "/image/tiles/explosion/explosion_vertical1.png";
   public static final String explosion_vertical2 = "/image/tiles/explosion/explosion_vertical2.png";
-  public static final String explosion_vertical_down_last = "/image/tiles/explosion/explosion_vertical_down_last.png";
-  public static final String explosion_vertical_down_last1 = "/image/tiles/explosion/explosion_vertical_down_last.png";
-  public static final String explosion_vertical_down_last2 = "/image/tiles/explosion/explosion_vertical_down_last.png";
-  public static final String explosion_vertical_top_last = "/image/tiles/explosion/explosion_vertical_top_last.png";
-  public static final String explosion_vertical_top_last1 = "/image/tiles/explosion/explosion_vertical_top_last1.png";
-  public static final String explosion_vertical_top_last2 = "/image/tiles/explosion/explosion_vertical_top_last2.png";
+  public static final String explosion_vertical_down_last =
+      "/image/tiles/explosion/explosion_vertical_down_last.png";
+  public static final String explosion_vertical_down_last1 =
+      "/image/tiles/explosion/explosion_vertical_down_last.png";
+  public static final String explosion_vertical_down_last2 =
+      "/image/tiles/explosion/explosion_vertical_down_last.png";
+  public static final String explosion_vertical_top_last =
+      "/image/tiles/explosion/explosion_vertical_top_last.png";
+  public static final String explosion_vertical_top_last1 =
+      "/image/tiles/explosion/explosion_vertical_top_last1.png";
+  public static final String explosion_vertical_top_last2 =
+      "/image/tiles/explosion/explosion_vertical_top_last2.png";
 
-    /*
+  /*
   |--------------------------------------------------------------------------
   | items
   |--------------------------------------------------------------------------

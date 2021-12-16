@@ -15,11 +15,10 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 public class Bomber extends Entity {
+  public GamePanel gp;
   private int numOfBomb = 1;
   private int flameSize = 1;
   private int score = 0;
-
-  public GamePanel gp;
   private KeyHandler keyHandler;
   private ArrayList<Bomb> bombs = new ArrayList<>();
   private ArrayList<Entity> entities = new ArrayList<>();

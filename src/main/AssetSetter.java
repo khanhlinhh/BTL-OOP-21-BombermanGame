@@ -1,8 +1,6 @@
 package main;
 
 import entities.Entity;
-import entities.enemies.Balloon;
-import entities.enemies.Oneal;
 import item.Item;
 
 import java.awt.*;
@@ -24,7 +22,7 @@ public class AssetSetter {
 
   public void update() throws InterruptedException {
     if (!items.isEmpty()) {
-        for (Item item : items) {
+      for (Item item : items) {
         if (item.isDisappeared) {
           items.remove(item);
           break;
