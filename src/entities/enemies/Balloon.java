@@ -75,15 +75,6 @@ public class Balloon extends Entity {
             }
         }
 
-        if (gp.bomber.getBombs() != null) {
-            for (Bomb bomb : gp.bomber.getBombs()) {
-                gp.checkCollision.checkBrickandBomb(this, bomb);
-                if (collisionOn && !bomb.exploded) {
-                    break;
-                }
-            }
-        }
-
         //Nếu va chạm
         if (!collisionOn) {
             switch (direction) {

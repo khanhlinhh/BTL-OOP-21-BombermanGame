@@ -149,5 +149,25 @@ public class CheckCollision {
         break;
     }
   }
+
+  public void checkEnemyCollision(Entity entity, Bomber bomber) {
+    int entityLeft = entity.worldX;
+    int entityRight = entityLeft + GamePanel.tileSize;
+    int entityTop = entity.worldY;
+    int entityBottom = entityTop + GamePanel.tileSize;
+
+    int bomberLeft = bomber.worldX + bomber.solidArea.x;
+    int bomberRight = bomberLeft + bomber.solidArea.width;
+    int bomberTop = bomber.worldY + bomber.solidArea.y;
+    int bomberBottom = bomberTop + bomber.solidArea.height;
+
+    if (bomberBottom <= entityBottom && bomberBottom >= entityTop) {
+      if (entityRight >= bomberLeft && entityLeft <= bomberLeft) {
+        bomber.isDead = true;
+      } else if (entityRight >= bomberRight && entityLeft <= bomberRight) {
+        bomber.isDead = true;
+      }
+    }
+  }
 }
 

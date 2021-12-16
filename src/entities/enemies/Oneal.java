@@ -63,17 +63,8 @@ public class Oneal extends Entity {
         collisionOn = false;
         gp.checkCollision.checkTile(this);
         for (Item item : gp.tileManager.getItems()) {
-            if (item instanceof Brick || item instanceof Bomb) {
+            if (item instanceof Brick) {
                 gp.checkCollision.checkBrickandBomb(this, item);
-                if (collisionOn) {
-                    break;
-                }
-            }
-        }
-
-        if (gp.bomber.getBombs() != null) {
-            for (Bomb bomb : gp.bomber.getBombs()) {
-                gp.checkCollision.checkBrickandBomb(this, bomb);
                 if (collisionOn) {
                     break;
                 }

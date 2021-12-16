@@ -23,13 +23,14 @@ public class Bomber extends Entity {
   public GamePanel gp;
   private KeyHandler keyHandler;
   private ArrayList<Bomb> bombs = new ArrayList<>();
+  private ArrayList<Entity> entities = new ArrayList<>();
 
   public Bomber(GamePanel gp, KeyHandler keyHandler) {
     this.gp = gp;
     this.keyHandler = keyHandler;
     // giới hạn phạm vi va chạm của nhân vật
     solidArea = new Rectangle(8, 18, 20, 25);
-
+    entities = gp.tileManager.getEntities();
     setDefaultValues();
     getImage();
   }
@@ -134,6 +135,7 @@ public class Bomber extends Entity {
       if (bombs.size() < numOfBomb) {
         Sound.playsound(Sound.drop_bomb);
         bombs.add(new Bomb(this.gp,this));
+        keyHandler.spacePressed = false;
       }
     }
     if (!bombs.isEmpty()) {
@@ -146,7 +148,12 @@ public class Bomber extends Entity {
         }
       }
     }
-    System.out.println(this.getNumOfBomb());
+
+    if (!entities.isEmpty()) {
+      for (Entity entity : entities) {
+        gp.checkCollision.checkEnemyCollision(entity, this);
+      }
+    }
   }
 
   /** Render ra màn hình. */
