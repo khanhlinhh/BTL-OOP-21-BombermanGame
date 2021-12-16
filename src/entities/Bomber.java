@@ -28,7 +28,7 @@ public class Bomber extends Entity {
     solidArea = new Rectangle(8, 18, 20, 25);
 
     setDefaultValues();
-    getPlayerImage();
+    getImage();
   }
 
   public void setDefaultValues() {
@@ -39,7 +39,8 @@ public class Bomber extends Entity {
     isDead = false;
   }
 
-  public void getPlayerImage() {
+  @Override
+  public void getImage() {
     try {
       up1 = ImageIO.read(getClass().getResourceAsStream(Sprite.bomber_up1));
       up2 = ImageIO.read(getClass().getResourceAsStream(Sprite.bomber_up2));
@@ -59,6 +60,7 @@ public class Bomber extends Entity {
   }
 
   /** Điểu khiển nhân vật. */
+  @Override
   public void update() {
     if (keyHandler.upPressed
         || keyHandler.downPressed
@@ -139,6 +141,7 @@ public class Bomber extends Entity {
   }
 
   /** Render ra màn hình. */
+  @Override
   public void draw(Graphics2D g2) {
     BufferedImage image = null;
     switch (direction) {

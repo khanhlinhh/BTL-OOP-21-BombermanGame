@@ -5,6 +5,8 @@ public class Sprite {
   public static final char bombItemChar = 'b';
   public static final char flameItemChar = 'f';
   public static final char brickChar = '*';
+  public static final char balloonChar = '1';
+  public static final char onealChar = '2';
 
   /*
   |--------------------------------------------------------------------------

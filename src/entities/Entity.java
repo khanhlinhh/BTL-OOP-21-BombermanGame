@@ -3,7 +3,7 @@ package entities;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 
-public class Entity {
+public abstract class Entity {
   public int worldX, worldY;
   public int speed;
 
@@ -23,4 +23,10 @@ public class Entity {
   public static final int DOWN_DIRECTION = 2;
   public static final int LEFT_DIRECTION = 3;
   public static final int RIGHT_DIRECTION = 4;
+
+  public abstract void getImage();
+
+  public abstract void update();
+
+  public abstract void draw(Graphics2D g2);
 }

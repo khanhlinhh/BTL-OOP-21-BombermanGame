@@ -1,5 +1,8 @@
 package graphics;
 
+import entities.Entity;
+import entities.enemies.Balloon;
+import entities.enemies.Oneal;
 import item.Item;
 import item.powerup.BombItem;
 import item.powerup.FlameItem;
@@ -20,6 +23,7 @@ public class TileManager {
   public char mapTile[][];
   private GamePanel gp;
   private ArrayList<Item> items = new ArrayList<>();
+  private ArrayList<Entity> entities = new ArrayList<>();
 
   public TileManager(GamePanel gp) {
     this.gp = gp;
@@ -63,6 +67,8 @@ public class TileManager {
             case Sprite.bombItemChar -> items.add(new BombItem(gp, col, row));
             case Sprite.flameItemChar -> items.add(new FlameItem(gp, col, row));
             case Sprite.brickChar -> items.add(new Brick(gp, col, row));
+            case Sprite.balloonChar -> entities.add(new Balloon(gp, col, row));
+            case Sprite.onealChar -> entities.add(new Oneal(gp, col, row));
           }
           col++;
         }
@@ -101,5 +107,9 @@ public class TileManager {
 
   public ArrayList<Item> getItems() {
     return items;
+  }
+
+  public ArrayList<Entity> getEntities() {
+    return entities;
   }
 }
