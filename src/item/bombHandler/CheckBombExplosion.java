@@ -1,11 +1,15 @@
 package item.bombHandler;
 
-import entities.Entity;
+import graphics.MapConverter;
+import item.Item;
 import item.wall.Brick;
 import main.GamePanel;
 
+import java.util.ArrayList;
+
 public class CheckBombExplosion {
     private GamePanel gp;
+    private ArrayList<Item> items = new ArrayList<>();
 
     public CheckBombExplosion(GamePanel gp) {
         this.gp = gp;
@@ -32,7 +36,10 @@ public class CheckBombExplosion {
 //    }
 
     public void checkBombDestroy(Brick brick, Bomb bomb) {
-        int flameSize = bomb.bomber.getFlameSize();
+        int up = bomb.flameArea[0];
+        int down = bomb.flameArea[1];
+        int left = bomb.flameArea[2];
+        int right = bomb.flameArea[3];
         int brickLeft = brick.worldX;
         int brickTop = brick.worldY;
         int brickBottom = brickTop + GamePanel.tileSize;
@@ -42,17 +49,17 @@ public class CheckBombExplosion {
         int bombBottom = bombTop + GamePanel.tileSize;
         int bombLeft = bomb.worldX;
         int bombRight = bombLeft + GamePanel.tileSize;
+
         // TOP
-        for (int i = 0; i < flameSize; i++) {
+        for (int i = 0; i < up; i++) {
             int bombTopUp = bombTop - (GamePanel.tileSize * i);
             if (brickBottom == bombTopUp && brickLeft == bombLeft && brickRight == bombRight) {
                 brick.collision = true;
                 break;
             }
         }
-
         // DOWN
-        for (int i = 0; i < flameSize; i++) {
+        for (int i = 0; i < down; i++) {
             int bombBottomDown = bombBottom + (GamePanel.tileSize * i);
             if (brickTop == bombBottomDown && brickLeft == bombLeft && brickRight == bombRight) {
                 brick.collision = true;
@@ -61,7 +68,7 @@ public class CheckBombExplosion {
         }
 
         // LEFT
-        for (int i = 0; i < flameSize; i++) {
+        for (int i = 0; i < left; i++) {
             int bombLeftLeft = bombLeft - (GamePanel.tileSize * i);
             if (brickRight == bombLeftLeft  && brickBottom == bombBottom && brickTop == bombTop) {
                 brick.collision = true;
@@ -70,7 +77,7 @@ public class CheckBombExplosion {
         }
 
         // RIGHT
-        for (int i = 0; i < flameSize; i++) {
+        for (int i = 0; i < right; i++) {
             int bombRightRight = bombRight + (GamePanel.tileSize * i);
             if (brickLeft == bombRightRight  && brickBottom == bombBottom && brickTop == bombTop) {
                 brick.collision = true;
@@ -79,7 +86,120 @@ public class CheckBombExplosion {
         }
     }
 
-    public void checkFlameSize(int[] flameArea, Bomb bomb, Brick brick) {
+    public void checkFlameArea(int[] flameArea, Bomb bomb) {
+        int flameSize = bomb.bomber.getFlameSize();
+        items = gp.tileManager.getItems();
 
+        int bombTop = bomb.worldY;
+        int bombBottom = bombTop + GamePanel.tileSize;
+        int bombLeft = bomb.worldX;
+
+        // TOP
+        for (int i = 1; i < flameSize; i++) {
+            int bombTopUp = bombTop - (GamePanel.tileSize * i);
+            int col = bombLeft / GamePanel.tileSize;
+            int row = bombTopUp / GamePanel.tileSize;
+            char tileChar = gp.tileManager.mapTile[col][row];
+            int tileNum = MapConverter.Converter(tileChar);
+            if (gp.tileManager.tile[tileNum].collision) {
+                flameArea[0] = i;
+                break;
+            }
+            if (items != null) {
+                for (Item item : items) {
+                    if (item instanceof Brick) {
+                        Brick brick = (Brick) item;
+                        int brickLeft = brick.worldX;
+                        int brickBottom = brick.worldY + GamePanel.tileSize;
+                        if (bombLeft == brickLeft && bombTopUp == brickBottom) {
+                            if (i < flameArea[0]) {
+                                flameArea[0] = i;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        // DOWN
+        for (int i = 1; i < flameSize; i++) {
+            int bombBottomDown = bombBottom + (GamePanel.tileSize * i);
+            int col = bombLeft / GamePanel.tileSize;
+            int row = bombBottomDown / GamePanel.tileSize;
+            char tileChar = gp.tileManager.mapTile[col][row];
+            int tileNum = MapConverter.Converter(tileChar);
+            if (gp.tileManager.tile[tileNum].collision) {
+                flameArea[1] = i;
+                break;
+            }
+            if (items != null) {
+                for (Item item : items) {
+                    if (item instanceof Brick) {
+                        Brick brick = (Brick) item;
+                        int brickLeft = brick.worldX;
+                        int brickTop = brick.worldY;
+                        if (bombLeft == brickLeft && bombBottomDown == brickTop) {
+                            if (i < flameArea[1]) {
+                                flameArea[1] = i;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        // LEFT
+        for (int i = 1; i < flameSize; i++) {
+            int bombLeftLeft = bombLeft - (GamePanel.tileSize * i);
+            int col = bombLeftLeft / GamePanel.tileSize;
+            int row = bombTop / GamePanel.tileSize;
+            char tileChar = gp.tileManager.mapTile[col][row];
+            int tileNum = MapConverter.Converter(tileChar);
+            if (gp.tileManager.tile[tileNum].collision) {
+                flameArea[2] = i;
+                break;
+            }
+            if (items != null) {
+                for (Item item : items) {
+                    if (item instanceof Brick) {
+                        Brick brick = (Brick) item;
+                        int brickRight = brick.worldX + GamePanel.tileSize;
+                        int brickTop = brick.worldY;
+                        if (bombLeftLeft == brickRight && bombTop == brickTop) {
+                            if (i < flameArea[2]) {
+                                flameArea[2] = i;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        // RIGHT
+        for (int i = 1; i <= flameSize; i++) {
+            int bombLeftRight = bombLeft + (GamePanel.tileSize * i);
+            int col = bombLeftRight / GamePanel.tileSize;
+            int row = bombTop / GamePanel.tileSize;
+            char tileChar = gp.tileManager.mapTile[col][row];
+            int tileNum = MapConverter.Converter(tileChar);
+            if (gp.tileManager.tile[tileNum].collision) {
+                flameArea[3] = i;
+                break;
+            }
+            if (items != null) {
+                for (Item item : items) {
+                    if (item instanceof Brick) {
+                        Brick brick = (Brick) item;
+                        int brickLeft = brick.worldX;
+                        int brickTop = brick.worldY;
+                        if (bombLeftRight == brickLeft && bombTop == brickTop) {
+                            if (i < flameArea[3]) {
+                                flameArea[3] = i;
+                            }
+                        }
+                    }
+                }
+            }
+        }
     }
 }

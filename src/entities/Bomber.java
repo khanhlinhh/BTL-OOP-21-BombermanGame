@@ -17,7 +17,7 @@ public class Bomber extends Entity {
   private int numOfBomb = 1;
   private int flameSize = 1;
 
-  private GamePanel gp;
+  public GamePanel gp;
   private KeyHandler keyHandler;
   private ArrayList<Bomb> bombs = new ArrayList<>();
 
@@ -123,7 +123,7 @@ public class Bomber extends Entity {
     }
     if (keyHandler.spacePressed) {
       if (bombs.size() < numOfBomb) {
-        bombs.add(new Bomb(this));
+        bombs.add(new Bomb(this.gp,this));
       }
     }
     if (!bombs.isEmpty()) {

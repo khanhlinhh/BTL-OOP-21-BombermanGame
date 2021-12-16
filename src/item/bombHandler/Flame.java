@@ -20,7 +20,6 @@ public class Flame extends Item {
     private Bomb bomb;
     private int flameSize;
     private int spriteRepeat;
-    public int[] flameArea;
 
     public Flame(Bomb bomb) {
         this.bomb = bomb;

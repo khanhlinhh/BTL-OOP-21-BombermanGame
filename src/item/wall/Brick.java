@@ -52,13 +52,13 @@ public class Brick extends Item {
                 spriteCounter = 0;
             }
         }
-        if (this.gp.bomber.getBombs() != null) {
-            for (Bomb bomb : gp.bomber.getBombs()) {
-                if (bomb.exploded) {
-                    checkBombExplosion.checkBombDestroy(this, bomb);
-                }
-            }
-        }
+//        if (this.gp.bomber.getBombs() != null) {
+//            for (Bomb bomb : gp.bomber.getBombs()) {
+//                if (bomb.exploded) {
+//                    checkBombExplosion.checkBombDestroy(this, bomb);
+//                }
+//            }
+//        }
     }
 
     @Override

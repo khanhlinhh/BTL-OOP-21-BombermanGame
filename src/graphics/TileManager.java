@@ -64,7 +64,6 @@ public class TileManager {
             case Sprite.flameItemChar -> items.add(new FlameItem(gp, col, row));
             case Sprite.brickChar -> items.add(new Brick(gp, col, row));
           }
-
           col++;
         }
         if (col == gp.maxScreenCol) {

@@ -44,7 +44,9 @@ public class AssetSetter {
 
   public void draw(Graphics2D g2) {
     for (Item item : items) {
-      item.draw(g2);
+      if (item != null) {
+        item.draw(g2);
+      }
     }
     oneals[0].draw(g2);
     oneals[1].draw(g2);
