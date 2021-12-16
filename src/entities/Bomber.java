@@ -77,7 +77,7 @@ public class Bomber extends Entity {
       collisionOn = false;
       gp.checkCollision.checkTile(this);
       for (Item item : gp.tileManager.getItems()) {
-        if (item instanceof Brick || item instanceof Bomb) {
+        if (item instanceof Brick) {
           gp.checkCollision.checkBrickandBomb(this, item);
           if (collisionOn) {
             break;
@@ -128,7 +128,7 @@ public class Bomber extends Entity {
     }
     if (!bombs.isEmpty()) {
       for (Bomb bomb : bombs) {
-        if (bomb.exploded) {
+        if (bomb.isDisappeared) {
           bombs.remove(bomb);
           break;
         } else {

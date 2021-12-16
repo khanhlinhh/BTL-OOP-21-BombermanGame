@@ -48,6 +48,7 @@ public class Bomb extends Item {
   @Override
   public void update() {
     if (countExplode == 0 && flame == null) {
+      exploded = true;
       flame = new Flame(this);
     } else {
       spriteCounter++;
@@ -64,7 +65,7 @@ public class Bomb extends Item {
     }
     if (flame != null) {
       if (flame.isDisappeared) {
-        exploded = true;
+        isDisappeared = true;
       } else {
         flame.update();
       }

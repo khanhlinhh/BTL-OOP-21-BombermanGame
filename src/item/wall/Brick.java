@@ -2,6 +2,8 @@ package item.wall;
 
 import graphics.Sprite;
 import item.Item;
+import item.bombHandler.Bomb;
+import item.bombHandler.CheckBombExplosion;
 import main.GamePanel;
 
 import javax.imageio.ImageIO;
@@ -19,6 +21,7 @@ public class Brick extends Item {
         isPowerUp = false;
         worldX = xUnit * GamePanel.tileSize;
         worldY = yUnit * GamePanel.tileSize;
+        checkBombExplosion = new CheckBombExplosion(this.gp);
         getImage();
     }
 
@@ -47,6 +50,13 @@ public class Brick extends Item {
                     isDisappeared = true;
                 }
                 spriteCounter = 0;
+            }
+        }
+        if (this.gp.bomber.getBombs() != null) {
+            for (Bomb bomb : gp.bomber.getBombs()) {
+                if (bomb.exploded) {
+                    checkBombExplosion.checkBombDestroy(this, bomb);
+                }
             }
         }
     }

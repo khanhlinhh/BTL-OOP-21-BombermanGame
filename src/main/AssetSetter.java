@@ -24,7 +24,6 @@ public class AssetSetter {
 
   public void setObject() {
     this.items = gp.tileManager.getItems();
-
   }
 
   public void update() throws InterruptedException {
