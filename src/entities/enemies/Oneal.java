@@ -19,11 +19,11 @@ public class Oneal extends Entity {
         //giới hạn phạm vi va chạm của vật
         solidArea = new Rectangle(0, 0, 42, 42);
 
-        worldX = xUnit; //Toạ độ xuất hiện (tileSize * thứ tự cột)
-        worldY = yUnit; //Toạ độ xuất hiện (tileSize * thứ tự hàng)
+        worldX = xUnit * GamePanel.tileSize; //Toạ độ xuất hiện (tileSize * thứ tự cột)
+        worldY = yUnit * GamePanel.tileSize; //Toạ độ xuất hiện (tileSize * thứ tự hàng)
 
         setDefaultValues();
-        getPlayerImage();
+        getImage();
     }
 
     public void setDefaultValues() {
@@ -33,7 +33,8 @@ public class Oneal extends Entity {
     }
 
     /** Hàm lấy ảnh */
-    public void getPlayerImage() {
+    @Override
+    public void getImage() {
         try {
             left1 = ImageIO.read(getClass().getResourceAsStream(Sprite.oneal_left1));
             left2 = ImageIO.read(getClass().getResourceAsStream(Sprite.oneal_left2));
@@ -51,6 +52,7 @@ public class Oneal extends Entity {
     }
 
     /** Hàm di chuyển. */
+    @Override
     public void update() {
         if (collisionOn) {
             direction = getNewDiretion();
@@ -104,6 +106,7 @@ public class Oneal extends Entity {
     }
 
     /** Hàm render ra màn hình. */
+    @Override
     public void draw(Graphics2D g2) {
         BufferedImage image = null;
         switch (direction) {

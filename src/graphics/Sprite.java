@@ -7,6 +7,8 @@ public class Sprite {
   public static final char brickChar = '*';
   public static final char coinchar = 'c';
 
+  public static final char balloonChar = '1';
+  public static final char onealChar = '2';
 
   /*
   |--------------------------------------------------------------------------

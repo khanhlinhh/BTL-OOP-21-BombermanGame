@@ -20,11 +20,11 @@ public class Balloon extends Entity {
         //giới hạn phạm vi va chạm của vật
         solidArea = new Rectangle(0, 0, 42, 42);
 
-        worldX = xUnit; //Toạ độ xuất hiện (tileSize * thứ tự cột)
-        worldY = yUnit; //Toạ độ xuất hiện (tileSize * thứ tự hàng)
+        worldX = xUnit * GamePanel.tileSize; //Toạ độ xuất hiện (tileSize * thứ tự cột)
+        worldY = yUnit * GamePanel.tileSize; //Toạ độ xuất hiện (tileSize * thứ tự hàng)
 
         setDefaultValues();
-        getPlayerImage();
+        getImage();
     }
 
     public void setDefaultValues() {
@@ -36,7 +36,8 @@ public class Balloon extends Entity {
     /**
      * Hàm lấy ảnh
      */
-    public void getPlayerImage() {
+    @Override
+    public void getImage() {
         try {
             left1 = ImageIO.read(getClass().getResourceAsStream(Sprite.balloon_left1));
             left2 = ImageIO.read(getClass().getResourceAsStream(Sprite.balloon_left2));
