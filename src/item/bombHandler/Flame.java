@@ -17,7 +17,6 @@ public class Flame extends Item {
                         vertical, vertical1, vertical2,
                         vertical_down, vertical_down1, vertical_down2,
                         vertical_top, vertical_top1, vertical_top2;
-    private BufferedImage[][] flameImage = new BufferedImage[7][3];
     private Bomb bomb;
     private int flameSize;
     private int spriteRepeat;

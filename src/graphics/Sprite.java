@@ -23,6 +23,9 @@ public class Sprite {
   public static final String bomber_right1 = "/image/bomberman/player_right1.png";
   public static final String bomber_right2 = "/image/bomberman/player_right2.png";
   public static final String bomber_right3 = "/image/bomberman/player_right3.png";
+  public static final String bomber_dead1 = "/image/bomberman/player_dead1.png";
+  public static final String bomber_dead2 = "/image/bomberman/player_dead2.png";
+  public static final String bomber_dead3 = "/image/bomberman/player_dead3.png";
 
   /*
   |--------------------------------------------------------------------------
