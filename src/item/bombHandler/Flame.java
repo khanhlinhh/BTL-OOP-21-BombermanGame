@@ -90,21 +90,25 @@ public class Flame extends Item {
 
     @Override
     public void draw(Graphics2D g2) {
+        int up = bomb.flameArea[0];
+        int down = bomb.flameArea[1];
+        int left = bomb.flameArea[2];
+        int right = bomb.flameArea[3];
         if (spriteNum == 1) {
             g2.drawImage(exploded, worldX, worldY, GamePanel.tileSize, GamePanel.tileSize, null);
             for (int i = 0; i < flameSize; i++) {
                 for (int j = 0; j < 4; j++) {
                     int pos = GamePanel.tileSize * (i + 1);
                     if (i == flameSize - 1) {
-                        g2.drawImage(vertical_top, worldX, worldY - pos, GamePanel.tileSize, GamePanel.tileSize, null);
-                        g2.drawImage(horizontal_left, worldX - pos, worldY, GamePanel.tileSize, GamePanel.tileSize, null);
-                        g2.drawImage(vertical_down, worldX, worldY + pos, GamePanel.tileSize, GamePanel.tileSize, null);
-                        g2.drawImage(horizontal_right, worldX + pos, worldY, GamePanel.tileSize, GamePanel.tileSize, null);
+                        if (i < up) g2.drawImage(vertical_top, worldX, worldY - pos, GamePanel.tileSize, GamePanel.tileSize, null);
+                        if (i < left) g2.drawImage(horizontal_left, worldX - pos, worldY, GamePanel.tileSize, GamePanel.tileSize, null);
+                        if (i < down) g2.drawImage(vertical_down, worldX, worldY + pos, GamePanel.tileSize, GamePanel.tileSize, null);
+                        if (i < right) g2.drawImage(horizontal_right, worldX + pos, worldY, GamePanel.tileSize, GamePanel.tileSize, null);
                     } else {
-                        g2.drawImage(vertical, worldX, worldY - pos, GamePanel.tileSize, GamePanel.tileSize, null);
-                        g2.drawImage(horizontal, worldX - pos, worldY, GamePanel.tileSize, GamePanel.tileSize, null);
-                        g2.drawImage(vertical, worldX, worldY + pos, GamePanel.tileSize, GamePanel.tileSize, null);
-                        g2.drawImage(horizontal, worldX + pos, worldY, GamePanel.tileSize, GamePanel.tileSize, null);
+                        if (i < up) g2.drawImage(vertical, worldX, worldY - pos, GamePanel.tileSize, GamePanel.tileSize, null);
+                        if (i < left) g2.drawImage(horizontal, worldX - pos, worldY, GamePanel.tileSize, GamePanel.tileSize, null);
+                        if (i < down) g2.drawImage(vertical, worldX, worldY + pos, GamePanel.tileSize, GamePanel.tileSize, null);
+                        if (i < right) g2.drawImage(horizontal, worldX + pos, worldY, GamePanel.tileSize, GamePanel.tileSize, null);
                     }
                 }
             }
@@ -115,15 +119,15 @@ public class Flame extends Item {
                 for (int j = 0; j < 4; j++) {
                     int pos = GamePanel.tileSize * (i + 1);
                     if (i == flameSize - 1) {
-                        g2.drawImage(vertical_top1, worldX, worldY - pos, GamePanel.tileSize, GamePanel.tileSize, null);
-                        g2.drawImage(horizontal_left1, worldX - pos, worldY, GamePanel.tileSize, GamePanel.tileSize, null);
-                        g2.drawImage(vertical_down1, worldX, worldY + pos, GamePanel.tileSize, GamePanel.tileSize, null);
-                        g2.drawImage(horizontal_right1, worldX + pos, worldY, GamePanel.tileSize, GamePanel.tileSize, null);
+                        if (i < up) g2.drawImage(vertical_top1, worldX, worldY - pos, GamePanel.tileSize, GamePanel.tileSize, null);
+                        if (i < left) g2.drawImage(horizontal_left1, worldX - pos, worldY, GamePanel.tileSize, GamePanel.tileSize, null);
+                        if (i < down) g2.drawImage(vertical_down1, worldX, worldY + pos, GamePanel.tileSize, GamePanel.tileSize, null);
+                        if (i < right) g2.drawImage(horizontal_right1, worldX + pos, worldY, GamePanel.tileSize, GamePanel.tileSize, null);
                     } else {
-                        g2.drawImage(vertical1, worldX, worldY - pos, GamePanel.tileSize, GamePanel.tileSize, null);
-                        g2.drawImage(horizontal1, worldX - pos, worldY, GamePanel.tileSize, GamePanel.tileSize, null);
-                        g2.drawImage(vertical1, worldX, worldY + pos, GamePanel.tileSize, GamePanel.tileSize, null);
-                        g2.drawImage(horizontal1, worldX + pos, worldY, GamePanel.tileSize, GamePanel.tileSize, null);
+                        if (i < up) g2.drawImage(vertical1, worldX, worldY - pos, GamePanel.tileSize, GamePanel.tileSize, null);
+                        if (i < left) g2.drawImage(horizontal1, worldX - pos, worldY, GamePanel.tileSize, GamePanel.tileSize, null);
+                        if (i < down) g2.drawImage(vertical1, worldX, worldY + pos, GamePanel.tileSize, GamePanel.tileSize, null);
+                        if (i < right) g2.drawImage(horizontal1, worldX + pos, worldY, GamePanel.tileSize, GamePanel.tileSize, null);
                     }
                 }
             }
@@ -134,15 +138,15 @@ public class Flame extends Item {
                 for (int j = 0; j < 4; j++) {
                     int pos = GamePanel.tileSize * (i + 1);
                     if (i == flameSize - 1) {
-                        g2.drawImage(vertical_top2, worldX, worldY - pos, GamePanel.tileSize, GamePanel.tileSize, null);
-                        g2.drawImage(horizontal_left2, worldX - pos, worldY, GamePanel.tileSize, GamePanel.tileSize, null);
-                        g2.drawImage(vertical_down2, worldX, worldY + pos, GamePanel.tileSize, GamePanel.tileSize, null);
-                        g2.drawImage(horizontal_right2, worldX + pos, worldY, GamePanel.tileSize, GamePanel.tileSize, null);
+                        if (i < up) g2.drawImage(vertical_top2, worldX, worldY - pos, GamePanel.tileSize, GamePanel.tileSize, null);
+                        if (i < left) g2.drawImage(horizontal_left2, worldX - pos, worldY, GamePanel.tileSize, GamePanel.tileSize, null);
+                        if (i < down) g2.drawImage(vertical_down2, worldX, worldY + pos, GamePanel.tileSize, GamePanel.tileSize, null);
+                        if (i < right) g2.drawImage(horizontal_right2, worldX + pos, worldY, GamePanel.tileSize, GamePanel.tileSize, null);
                     } else {
-                        g2.drawImage(vertical2, worldX, worldY - pos, GamePanel.tileSize, GamePanel.tileSize, null);
-                        g2.drawImage(horizontal2, worldX - pos, worldY, GamePanel.tileSize, GamePanel.tileSize, null);
-                        g2.drawImage(vertical2, worldX, worldY + pos, GamePanel.tileSize, GamePanel.tileSize, null);
-                        g2.drawImage(horizontal2, worldX + pos, worldY, GamePanel.tileSize, GamePanel.tileSize, null);
+                        if (i < up) g2.drawImage(vertical2, worldX, worldY - pos, GamePanel.tileSize, GamePanel.tileSize, null);
+                        if (i < left) g2.drawImage(horizontal2, worldX - pos, worldY, GamePanel.tileSize, GamePanel.tileSize, null);
+                        if (i < down) g2.drawImage(vertical2, worldX, worldY + pos, GamePanel.tileSize, GamePanel.tileSize, null);
+                        if (i < right) g2.drawImage(horizontal2, worldX + pos, worldY, GamePanel.tileSize, GamePanel.tileSize, null);
                     }
                 }
             }

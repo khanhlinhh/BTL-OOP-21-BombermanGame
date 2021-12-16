@@ -95,23 +95,24 @@ public class CheckBombExplosion {
         int bombLeft = bomb.worldX;
 
         // TOP
-        for (int i = 1; i < flameSize; i++) {
+        for (int i = 0; i < flameSize; i++) {
             int bombTopUp = bombTop - (GamePanel.tileSize * i);
             int col = bombLeft / GamePanel.tileSize;
-            int row = bombTopUp / GamePanel.tileSize;
+            int row = (bombTopUp - GamePanel.tileSize) / GamePanel.tileSize;
             char tileChar = gp.tileManager.mapTile[col][row];
             int tileNum = MapConverter.Converter(tileChar);
             if (gp.tileManager.tile[tileNum].collision) {
-                flameArea[0] = i;
-                break;
+                if (i < flameArea[0]) {
+                    flameArea[0] = i;
+                }
             }
             if (items != null) {
                 for (Item item : items) {
                     if (item instanceof Brick) {
                         Brick brick = (Brick) item;
                         int brickLeft = brick.worldX;
-                        int brickBottom = brick.worldY + GamePanel.tileSize;
-                        if (bombLeft == brickLeft && bombTopUp == brickBottom) {
+                        int brickTop = brick.worldY;
+                        if (bombLeft == brickLeft && bombTopUp == brickTop) {
                             if (i < flameArea[0]) {
                                 flameArea[0] = i;
                             }
@@ -122,7 +123,7 @@ public class CheckBombExplosion {
         }
 
         // DOWN
-        for (int i = 1; i < flameSize; i++) {
+        for (int i = 0; i < flameSize; i++) {
             int bombBottomDown = bombBottom + (GamePanel.tileSize * i);
             int col = bombLeft / GamePanel.tileSize;
             int row = bombBottomDown / GamePanel.tileSize;
@@ -137,8 +138,8 @@ public class CheckBombExplosion {
                     if (item instanceof Brick) {
                         Brick brick = (Brick) item;
                         int brickLeft = brick.worldX;
-                        int brickTop = brick.worldY;
-                        if (bombLeft == brickLeft && bombBottomDown == brickTop) {
+                        int brickBottom = brick.worldY + GamePanel.tileSize;
+                        if (bombLeft == brickLeft && bombBottomDown == brickBottom) {
                             if (i < flameArea[1]) {
                                 flameArea[1] = i;
                             }
@@ -149,9 +150,9 @@ public class CheckBombExplosion {
         }
 
         // LEFT
-        for (int i = 1; i < flameSize; i++) {
+        for (int i = 0; i < flameSize; i++) {
             int bombLeftLeft = bombLeft - (GamePanel.tileSize * i);
-            int col = bombLeftLeft / GamePanel.tileSize;
+            int col = (bombLeftLeft - GamePanel.tileSize) / GamePanel.tileSize;
             int row = bombTop / GamePanel.tileSize;
             char tileChar = gp.tileManager.mapTile[col][row];
             int tileNum = MapConverter.Converter(tileChar);
@@ -163,9 +164,9 @@ public class CheckBombExplosion {
                 for (Item item : items) {
                     if (item instanceof Brick) {
                         Brick brick = (Brick) item;
-                        int brickRight = brick.worldX + GamePanel.tileSize;
+                        int brickLeft = brick.worldX;
                         int brickTop = brick.worldY;
-                        if (bombLeftLeft == brickRight && bombTop == brickTop) {
+                        if (bombLeftLeft == brickLeft && bombTop == brickTop) {
                             if (i < flameArea[2]) {
                                 flameArea[2] = i;
                             }
@@ -176,9 +177,9 @@ public class CheckBombExplosion {
         }
 
         // RIGHT
-        for (int i = 1; i <= flameSize; i++) {
-            int bombLeftRight = bombLeft + (GamePanel.tileSize * i);
-            int col = bombLeftRight / GamePanel.tileSize;
+        for (int i = 0; i < flameSize; i++) {
+            int bombRightRight = bombLeft + GamePanel.tileSize + (GamePanel.tileSize * i);
+            int col = bombRightRight / GamePanel.tileSize;
             int row = bombTop / GamePanel.tileSize;
             char tileChar = gp.tileManager.mapTile[col][row];
             int tileNum = MapConverter.Converter(tileChar);
@@ -190,9 +191,9 @@ public class CheckBombExplosion {
                 for (Item item : items) {
                     if (item instanceof Brick) {
                         Brick brick = (Brick) item;
-                        int brickLeft = brick.worldX;
+                        int brickRight = brick.worldX + GamePanel.tileSize;
                         int brickTop = brick.worldY;
-                        if (bombLeftRight == brickLeft && bombTop == brickTop) {
+                        if (bombRightRight == brickRight && bombTop == brickTop) {
                             if (i < flameArea[3]) {
                                 flameArea[3] = i;
                             }
