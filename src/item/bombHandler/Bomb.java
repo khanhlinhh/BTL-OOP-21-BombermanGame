@@ -99,6 +99,9 @@ public class Bomb extends Item {
     if (flame != null) {
       if (flame.isDisappeared) {
         isDisappeared = true;
+        if (this.bomber.collisionDead) {
+          this.bomber.isDead = true;
+        }
       } else {
         flame.update();
       }

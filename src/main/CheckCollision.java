@@ -163,9 +163,9 @@ public class CheckCollision {
 
     if (bomberBottom <= entityBottom && bomberBottom >= entityTop) {
       if (entityRight >= bomberLeft && entityLeft <= bomberLeft) {
-        bomber.isDead = true;
+        bomber.collisionDead = true;
       } else if (entityRight >= bomberRight && entityLeft <= bomberRight) {
-        bomber.isDead = true;
+        bomber.collisionDead = true;
       }
     }
   }

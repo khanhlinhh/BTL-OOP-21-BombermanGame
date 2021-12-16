@@ -20,7 +20,7 @@ public abstract class Entity {
   public int spriteNum = 1;
   public Rectangle solidArea; // phạm vi va chạm
   public boolean collisionOn = false;
-  public boolean collisionFlame = false;
+  public boolean collisionDead = false;
   public boolean isDead = false;
 
   public static final int UP_DIRECTION = 1;

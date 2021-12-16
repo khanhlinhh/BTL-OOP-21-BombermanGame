@@ -3,7 +3,6 @@ package entities;
 import graphics.Sprite;
 import item.Item;
 import item.bombHandler.Bomb;
-import item.bombHandler.CheckBombExplosion;
 import item.wall.Brick;
 import main.GamePanel;
 import main.KeyHandler;
@@ -131,6 +130,20 @@ public class Bomber extends Entity {
         spriteCounter = 0;
       }
     }
+
+    if (collisionDead) {
+      spriteCounter++;
+      if (spriteCounter > 12) {
+        if (spriteNum == 1) {
+          spriteNum = 2;
+        } else if (spriteNum == 2) {
+          spriteNum = 3;
+        } else if (spriteNum == 3) {
+          this.isDead = true;
+        }
+        spriteCounter = 0;
+      }
+    }
     if (keyHandler.spacePressed) {
       if (bombs.size() < numOfBomb) {
         Sound.playsound(Sound.drop_bomb);
@@ -154,56 +167,83 @@ public class Bomber extends Entity {
         gp.checkCollision.checkEnemyCollision(entity, this);
       }
     }
+
+    if (collisionDead) {
+      spriteCounter++;
+      if (spriteCounter > 12) {
+        if (spriteNum == 1) {
+          spriteNum = 2;
+        } else if (spriteNum == 2) {
+          spriteNum = 3;
+        } else if (spriteNum == 3) {
+          this.isDead = true;
+        }
+        spriteCounter = 0;
+      }
+    }
   }
 
   /** Render ra màn hình. */
   @Override
   public void draw(Graphics2D g2) {
     BufferedImage image = null;
-    switch (direction) {
-      case UP_DIRECTION -> { // UP
-        if (spriteNum == 1) {
-          image = up1;
+    if (!this.collisionDead) {
+      switch (direction) {
+        case UP_DIRECTION -> { // UP
+          if (spriteNum == 1) {
+            image = up1;
+          }
+          if (spriteNum == 2) {
+            image = up2;
+          }
+          if (spriteNum == 3) {
+            image = up3;
+          }
         }
-        if (spriteNum == 2) {
-          image = up2;
+        case DOWN_DIRECTION -> { // DOWN
+          if (spriteNum == 1) {
+            image = down1;
+          }
+          if (spriteNum == 2) {
+            image = down2;
+          }
+          if (spriteNum == 3) {
+            image = down3;
+          }
         }
-        if (spriteNum == 3) {
-          image = up3;
+        case LEFT_DIRECTION -> { // LEFT
+          if (spriteNum == 1) {
+            image = left1;
+          }
+          if (spriteNum == 2) {
+            image = left2;
+          }
+          if (spriteNum == 3) {
+            image = left3;
+          }
+        }
+        case RIGHT_DIRECTION -> { // RIGHT
+          if (spriteNum == 1) {
+            image = right1;
+          }
+          if (spriteNum == 2) {
+            image = right2;
+          }
+          if (spriteNum == 3) {
+            image = right3;
+          }
         }
       }
-      case DOWN_DIRECTION -> { // DOWN
-        if (spriteNum == 1) {
-          image = down1;
-        }
-        if (spriteNum == 2) {
-          image = down2;
-        }
-        if (spriteNum == 3) {
-          image = down3;
-        }
+    }
+    if (this.collisionDead) {
+      if (spriteNum == 1) {
+        image = dead1;
       }
-      case LEFT_DIRECTION -> { // LEFT
-        if (spriteNum == 1) {
-          image = left1;
-        }
-        if (spriteNum == 2) {
-          image = left2;
-        }
-        if (spriteNum == 3) {
-          image = left3;
-        }
+      if (spriteNum == 2) {
+        image = dead2;
       }
-      case RIGHT_DIRECTION -> { // RIGHT
-        if (spriteNum == 1) {
-          image = right1;
-        }
-        if (spriteNum == 2) {
-          image = right2;
-        }
-        if (spriteNum == 3) {
-          image = right3;
-        }
+      if (spriteNum == 3) {
+        image = dead3;
       }
     }
     g2.drawImage(image, worldX, worldY, GamePanel.tileSize, GamePanel.tileSize, null);

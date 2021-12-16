@@ -3,7 +3,6 @@ package entities.enemies;
 import entities.Entity;
 import graphics.Sprite;
 import item.Item;
-import item.bombHandler.Bomb;
 import item.wall.Brick;
 import main.GamePanel;
 
@@ -128,7 +127,7 @@ public class Balloon extends Entity {
                 }
             }
         }
-        if (collisionFlame) {
+        if (collisionDead) {
             image = dead1;
             isDead = true;
         }

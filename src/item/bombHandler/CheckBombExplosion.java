@@ -32,9 +32,9 @@ public class CheckBombExplosion {
 
         if (entityBottom <= bottomBomb && entityBottom >= topBomb) {
             if (rightBomb >= entityLeft && leftBomb <= entityLeft) {
-                entity.collisionFlame = true;
+                entity.collisionDead = true;
             } else if (rightBomb >= entityRight && leftBomb <= entityRight) {
-                entity.collisionFlame = true;
+                entity.collisionDead = true;
             }
         }
     }
