@@ -93,15 +93,16 @@ public class CheckCollision {
     int entityRight = entity.worldX + entity.solidArea.y + entity.solidArea.width;
     int entityTop = entity.worldY + entity.solidArea.y;
     int entityBottom = entity.worldY + entity.solidArea.y + entity.solidArea.height;
-
     int speed = 2;
+
     if (entity instanceof Bomber) {
       speed = gp.bomber.speed;
-      entityLeft -= 2;
-      entityRight += 3;
-      entityTop -= 1;
-      entityBottom += 3;
+      entityLeft -= speed;
+      entityRight += speed;
+      entityTop -= speed;
+      entityBottom += speed;
     }
+
     if (item instanceof Bomb) {
       entityLeft = entity.worldX - speed;
       entityRight = entityLeft + GamePanel.tileSize + speed;

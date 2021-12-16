@@ -3,6 +3,7 @@ package entities;
 import graphics.Sprite;
 import item.Item;
 import item.bombHandler.Bomb;
+import item.bombHandler.CheckBombExplosion;
 import item.wall.Brick;
 import main.GamePanel;
 import main.KeyHandler;
@@ -56,6 +57,9 @@ public class Bomber extends Entity {
       right1 = ImageIO.read(getClass().getResourceAsStream(Sprite.bomber_right1));
       right2 = ImageIO.read(getClass().getResourceAsStream(Sprite.bomber_right2));
       right3 = ImageIO.read(getClass().getResourceAsStream(Sprite.bomber_right3));
+      dead1 = ImageIO.read(getClass().getResourceAsStream(Sprite.bomber_dead1));
+      dead2 = ImageIO.read(getClass().getResourceAsStream(Sprite.bomber_dead2));
+      dead3 = ImageIO.read(getClass().getResourceAsStream(Sprite.bomber_dead3));
     } catch (IOException e) {
       e.printStackTrace();
     }
@@ -142,6 +146,7 @@ public class Bomber extends Entity {
         }
       }
     }
+    System.out.println(this.getNumOfBomb());
   }
 
   /** Render ra màn hình. */

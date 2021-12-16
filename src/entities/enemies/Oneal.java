@@ -42,6 +42,7 @@ public class Oneal extends Entity {
             right1 = ImageIO.read(getClass().getResourceAsStream(Sprite.oneal_right1));
             right2 = ImageIO.read(getClass().getResourceAsStream(Sprite.oneal_right2));
             right3 = ImageIO.read(getClass().getResourceAsStream(Sprite.oneal_right3));
+            dead1 = ImageIO.read(getClass().getResourceAsStream(Sprite.oneal_dead));
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -133,7 +134,10 @@ public class Oneal extends Entity {
                 }
             }
         }
-
+        if (collisionFlame) {
+            image = dead1;
+            isDead = true;
+        }
         g2.drawImage(image, worldX, worldY, GamePanel.tileSize, GamePanel.tileSize, null);
 
     }

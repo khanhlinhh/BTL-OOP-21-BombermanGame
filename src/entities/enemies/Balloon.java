@@ -45,6 +45,7 @@ public class Balloon extends Entity {
             right1 = ImageIO.read(getClass().getResourceAsStream(Sprite.balloon_right1));
             right2 = ImageIO.read(getClass().getResourceAsStream(Sprite.balloon_right2));
             right3 = ImageIO.read(getClass().getResourceAsStream(Sprite.balloon_right3));
+            dead1 = ImageIO.read(getClass().getResourceAsStream(Sprite.balloon_dead));
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -77,7 +78,7 @@ public class Balloon extends Entity {
         if (gp.bomber.getBombs() != null) {
             for (Bomb bomb : gp.bomber.getBombs()) {
                 gp.checkCollision.checkBrickandBomb(this, bomb);
-                if (collisionOn) {
+                if (collisionOn && !bomb.exploded) {
                     break;
                 }
             }
@@ -136,7 +137,10 @@ public class Balloon extends Entity {
                 }
             }
         }
-
+        if (collisionFlame) {
+            image = dead1;
+            isDead = true;
+        }
         g2.drawImage(image, worldX, worldY, GamePanel.tileSize, GamePanel.tileSize, null);
 
     }

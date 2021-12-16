@@ -10,8 +10,6 @@ import java.util.ArrayList;
 
 public class AssetSetter {
   GamePanel gp;
-  Oneal oneals[] = new Oneal[2];
-  Balloon balloons[] = new Balloon[3];
   ArrayList<Item> items = new ArrayList<>();
   ArrayList<Entity> entities = new ArrayList<>();
 
@@ -25,33 +23,41 @@ public class AssetSetter {
   }
 
   public void update() throws InterruptedException {
-    for (Item item : items) {
-      if (item.isDisappeared) {
-        items.remove(item);
-        break;
-      } else {
-        item.update();
+    if (!items.isEmpty()) {
+        for (Item item : items) {
+        if (item.isDisappeared) {
+          items.remove(item);
+          break;
+        } else {
+          item.update();
+        }
       }
     }
-    for (Entity entity : entities) {
-      if (entity.isDead) {
-        items.remove(entity);
-        break;
-      } else {
-        entity.update();
+    if (!entities.isEmpty()) {
+      for (Entity entity : entities) {
+        if (entity.isDead) {
+          entities.remove(entity);
+          break;
+        } else {
+          entity.update();
+        }
       }
     }
   }
 
   public void draw(Graphics2D g2) {
-    for (Item item : items) {
-      if (item != null) {
-        item.draw(g2);
+    if (!items.isEmpty()) {
+      for (Item item : items) {
+        if (item != null) {
+          item.draw(g2);
+        }
       }
     }
-    for (Entity entity : entities) {
-      if (entity != null) {
-        entity.draw(g2);
+    if (!entities.isEmpty()) {
+      for (Entity entity : entities) {
+        if (entity != null) {
+          entity.draw(g2);
+        }
       }
     }
   }

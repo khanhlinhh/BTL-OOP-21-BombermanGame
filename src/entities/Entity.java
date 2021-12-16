@@ -1,5 +1,7 @@
 package entities;
 
+import item.bombHandler.CheckBombExplosion;
+
 import java.awt.*;
 import java.awt.image.BufferedImage;
 
@@ -10,13 +12,15 @@ public abstract class Entity {
   public BufferedImage up1, up2, up3, // Lấy sritesheet của vật.
       down1, down2, down3,
       left1, left2, left3,
-      right1, right2, right3;
+      right1, right2, right3,
+      dead1, dead2, dead3;
 
   public int direction; // Hướng đi (điều khiển, check va chạm)
   public int spriteCounter = 0;
   public int spriteNum = 1;
   public Rectangle solidArea; // phạm vi va chạm
   public boolean collisionOn = false;
+  public boolean collisionFlame = false;
   public boolean isDead = false;
 
   public static final int UP_DIRECTION = 1;

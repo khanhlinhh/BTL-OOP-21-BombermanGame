@@ -1,5 +1,6 @@
 package item.bombHandler;
 
+import entities.Entity;
 import graphics.MapConverter;
 import item.Item;
 import item.wall.Brick;
@@ -15,25 +16,30 @@ public class CheckBombExplosion {
         this.gp = gp;
     }
 
-//    public void checkBombExplosionCollision(Entity entity, Bomb bomb) {
-//        int entityLeft = entity.worldX + entity.solidArea.x;
-//        int entityRight = entityLeft + entity.solidArea.width;
-//        int entityTop = entity.worldY + entity.solidArea.y;
-//        int entityBottom = entityTop + entity.solidArea.height;
-//        int flameSize = gp.bomber.getFlameSize() - 1;
-//        int bottomBomb = bomb.worldY + GamePanel.tileSize + flameSize;
-//        int topBomb = bomb.worldY - flameSize;
-//        int leftBomb = bomb.worldX - flameSize;
-//        int rightBomb = bomb.worldX + GamePanel.tileSize + flameSize;
-//
-//        if (entityBottom <= bottomBomb && entityBottom >= topBomb) {
-//            if (rightBomb >= entityLeft && leftBomb <= entityLeft) {
-//                entity.isDead = true;
-//            } else if (rightBomb >= entityRight && leftBomb <= entityRight) {
-//                entity.isDead = true;
-//            }
-//        }
-//    }
+    public void checkBombExplosionCollision(Entity entity, Bomb bomb) {
+        int entityLeft = entity.worldX + entity.solidArea.x;
+        int entityRight = entityLeft + entity.solidArea.width;
+        int entityTop = entity.worldY + entity.solidArea.y;
+        int entityBottom = entityTop + entity.solidArea.height;
+        int flameSizeUp = bomb.flameArea[0];
+        int flameSizeDown = bomb.flameArea[1];
+        int flameSizeLeft = bomb.flameArea[2];
+        int flameSizeRight = bomb.flameArea[3];
+        int topBomb = bomb.worldY - (GamePanel.tileSize * flameSizeUp);
+        int bottomBomb = topBomb + GamePanel.tileSize + (GamePanel.tileSize * flameSizeDown);
+        int leftBomb = bomb.worldX - (GamePanel.tileSize * flameSizeLeft);
+        int rightBomb = leftBomb + GamePanel.tileSize + (GamePanel.tileSize * flameSizeRight);
+
+        if (entityBottom <= bottomBomb && entityBottom >= topBomb) {
+            if (rightBomb >= entityLeft && leftBomb <= entityLeft) {
+        System.out.println("Dead");
+                entity.collisionFlame = true;
+            } else if (rightBomb >= entityRight && leftBomb <= entityRight) {
+                System.out.println("Dead");
+                entity.collisionOn = true;
+            }
+        }
+    }
 
     public void checkBombDestroy(Brick brick, Bomb bomb) {
         int up = bomb.flameArea[0];

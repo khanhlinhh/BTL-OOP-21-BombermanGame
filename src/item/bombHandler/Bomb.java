@@ -1,6 +1,7 @@
 package item.bombHandler;
 
 import entities.Bomber;
+import entities.Entity;
 import graphics.Sprite;
 import item.Item;
 import item.wall.Brick;
@@ -23,12 +24,14 @@ public class Bomb extends Item {
   private Timer timer;
   private GamePanel gp;
   private ArrayList<Item> items = new ArrayList<>();
+  private ArrayList<Entity> entities = new ArrayList<>();
   public int[] flameArea;
 
   public Bomb(GamePanel gp, Bomber bomber) {
     this.gp = gp;
     this.bomber = bomber;
     items = gp.tileManager.getItems();
+    entities = gp.tileManager.getEntities();
     checkBombExplosion = new CheckBombExplosion(gp);
     flameArea = new int[]{this.bomber.getFlameSize(), this.bomber.getFlameSize(), this.bomber.getFlameSize(), this.bomber.getFlameSize()};
     worldX = (bomber.worldX + bomber.solidArea.x) / GamePanel.tileSize * GamePanel.tileSize;
@@ -85,6 +88,12 @@ public class Bomb extends Item {
           }
         }
       }
+      if (entities != null) {
+        for(Entity entity : entities) {
+          checkBombExplosion.checkBombExplosionCollision(entity, this);
+        }
+      }
+      checkBombExplosion.checkBombExplosionCollision(this.bomber, this);
     }
 
     if (flame != null) {
