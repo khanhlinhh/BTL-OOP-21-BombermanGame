@@ -73,7 +73,6 @@ public class Bomber extends Entity {
      */
     @Override
     public void update() {
-//    System.out.println(score);
         if ((keyHandler.upPressed
                 || keyHandler.downPressed
                 || keyHandler.rightPressed
@@ -162,8 +161,6 @@ public class Bomber extends Entity {
 
         if (collisionDead) {
             checkScore();
-//      Sound.playsound(Sound.bomber_Die);
-//      Sound.playsound(Sound.gameOver);
             spriteCounter++;
             if (spriteCounter > 12) {
                 if (spriteNum == 1) {
@@ -253,12 +250,14 @@ public class Bomber extends Entity {
             EndGame endGame = new EndGame(this.gp, this);
             endGame.GameOverRender(g2);
         }
+        if(this.isVictory){
+            EndGame endGame = new EndGame(this.gp,this);
+            endGame.GameVictoryRender();
+        }
         if (highScore == -1) {
             // init highscore
             highScore = this.getHighScore();
         }
-        g2.drawString("Score: " + score, 0, 10);
-        g2.drawString("High Score: " + highScore, 0, 20);
     }
 
     public void checkScore() {

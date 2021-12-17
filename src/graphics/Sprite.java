@@ -9,7 +9,7 @@ public class Sprite {
   public static final char balloonChar = '1';
   public static final char onealChar = '2';
   public static final char kondoriaChar = '3';
-  public static final char portalChar = 'w';
+  public static final char portalChar = 'x';
 
   /*
   |--------------------------------------------------------------------------

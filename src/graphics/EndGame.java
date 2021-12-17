@@ -2,6 +2,7 @@ package graphics;
 
 import entities.Bomber;
 import main.GamePanel;
+import main.Sound;
 
 import javax.swing.*;
 import java.awt.*;
@@ -17,6 +18,8 @@ public class EndGame {
 
     public void GameOverRender(Graphics2D g2) {
         if (bomber.isDead) {
+            Sound.playsound(Sound.bomber_Die);
+            Sound.playsound(Sound.gameOver);
             gp.gameThread = null;
             JFrame windowGameOver = new JFrame();
             Box vBox = Box.createVerticalBox();
@@ -46,6 +49,7 @@ public class EndGame {
 
     public void GameVictoryRender() {
         if (bomber.isVictory) {
+            Sound.playsound(Sound.victory);
             gp.gameThread = null;
             JFrame windowGameOver = new JFrame();
             Box vBox = Box.createVerticalBox();

@@ -27,7 +27,6 @@ public class TileManager {
     private GamePanel gp;
     private ArrayList<Item> items = new ArrayList<>();
     public ArrayList<Entity> entities = new ArrayList<>();
-    public int countBrick = 0;
 
     public TileManager(GamePanel gp) {
         this.gp = gp;
@@ -67,22 +66,34 @@ public class TileManager {
                     char c = line.charAt(col);
                     mapTile[col][row] = c;
                     switch(c) {
-                        case Sprite.speedItemChar -> items.add(new SpeedItem(gp, col, row));
-                        case Sprite.bombItemChar -> items.add(new BombItem(gp, col, row));
-                        case Sprite.flameItemChar -> items.add(new FlameItem(gp, col, row));
+                        case Sprite.speedItemChar ->{
+                            items.add(new SpeedItem(gp, col, row));
+                            items.add(new Brick(gp, col, row));
+                        }
+                        case Sprite.bombItemChar ->{
+                            items.add(new BombItem(gp, col, row));
+                            items.add(new Brick(gp, col, row));
+                        }
+                        case Sprite.flameItemChar ->{
+                            items.add(new FlameItem(gp, col, row));
+                            items.add(new Brick(gp, col, row));
+
+                        }
                         case Sprite.brickChar -> {
                             items.add(new Brick(gp, col, row));
-                            countBrick++;
                         }
-                        case Sprite.coinchar -> items.add(new Coin(gp, col,row));
-                        case Sprite.balloonChar -> entities.add(new Balloon(gp, col, row));
-                        case Sprite.onealChar -> entities.add(new Oneal(gp, col, row));
-                        case Sprite.kondoriaChar -> entities.add(new Kondoria(gp,col,row));
+                        case Sprite.coinchar ->{
+                            items.add(new Coin(gp, col,row));
+                            items.add(new Brick(gp, col, row));
+                        }
+
                         case Sprite.portalChar -> {
                             items.add(new Portal(gp, col, row));
                             items.add(new Brick(gp, col, row));
-                            countBrick++;
                         }
+                        case Sprite.balloonChar -> entities.add(new Balloon(gp, col, row));
+                        case Sprite.onealChar -> entities.add(new Oneal(gp, col, row));
+                        case Sprite.kondoriaChar -> entities.add(new Kondoria(gp,col,row));
                     }
                     col++;
                 }
@@ -95,6 +106,14 @@ public class TileManager {
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+    public boolean checkVictory(){
+        int count = 0;
+        for (Entity e : entities){
+            if(e instanceof Oneal || e instanceof  Balloon || e instanceof  Kondoria)  count ++;
+        }
+        return count == 0;
     }
 
     /** Render ra màn hình. */

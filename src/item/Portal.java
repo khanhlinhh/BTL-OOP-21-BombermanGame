@@ -2,7 +2,6 @@ package item;
 
 import graphics.Sprite;
 import main.GamePanel;
-import main.Sound;
 
 import javax.imageio.ImageIO;
 import java.awt.*;
@@ -32,7 +31,7 @@ public class Portal extends Item {
     public void update() throws InterruptedException {
         collision = false;
         gp.checkCollision.checkPowerUp(gp.bomber, this);
-        if (collision && gp.tileManager.countBrick == 0) {
+        if (collision && gp.tileManager.checkVictory()) {
             gp.bomber.isVictory = true;
         }
     }
