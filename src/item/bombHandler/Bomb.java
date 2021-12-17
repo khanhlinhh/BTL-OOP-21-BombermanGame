@@ -81,8 +81,8 @@ public class Bomb extends Item {
       Sound.playsound(Sound.bomb_explode);
       exploded = true;
       flame = new Flame(this);
-      for(Bomb bom : bomber.getBombs()){
-        if(!bom.exploded) checkBombExplosion.BombActivated(bom,this);
+      for (Bomb bom : bomber.getBombs()) {
+        if (!bom.exploded) checkBombExplosion.BombActivated(bom, this);
       }
     } else {
       spriteCounter++;

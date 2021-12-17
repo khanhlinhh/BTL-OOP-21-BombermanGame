@@ -1,5 +1,6 @@
 package entities;
 
+import graphics.EndGame;
 import graphics.Sprite;
 import item.Item;
 import item.bombHandler.Bomb;
@@ -16,6 +17,7 @@ import java.util.ArrayList;
 
 public class Bomber extends Entity {
     public GamePanel gp;
+    public boolean isVictory = false;
     private int numOfBomb = 1;
     private int flameSize = 1;
     private int score = 0;
@@ -72,10 +74,10 @@ public class Bomber extends Entity {
     @Override
     public void update() {
 //    System.out.println(score);
-        if (keyHandler.upPressed
+        if ((keyHandler.upPressed
                 || keyHandler.downPressed
                 || keyHandler.rightPressed
-                || keyHandler.leftPressed) {
+                || keyHandler.leftPressed) && !collisionDead) {
             if (keyHandler.upPressed) {
                 direction = UP_DIRECTION;
             } else if (keyHandler.downPressed) {
@@ -107,7 +109,7 @@ public class Bomber extends Entity {
             }
 
             // Nếu va chạm
-            if (!collisionOn) {
+            if (!collisionOn && !collisionDead) {
                 switch (direction) {
                     case UP_DIRECTION -> // UP
                             worldY -= speed;
@@ -247,7 +249,10 @@ public class Bomber extends Entity {
                 bomb.draw(g2);
             }
         }
-
+        if (this.isDead) {
+            EndGame endGame = new EndGame(this.gp, this);
+            endGame.GameOverRender(g2);
+        }
         if (highScore == -1) {
             // init highscore
             highScore = this.getHighScore();

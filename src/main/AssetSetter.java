@@ -2,6 +2,7 @@ package main;
 
 import entities.Entity;
 import item.Item;
+import item.wall.Brick;
 
 import java.awt.*;
 import java.util.ArrayList;

@@ -47,6 +47,7 @@ public class Brick extends Item {
           spriteNum = 3;
         } else if (spriteNum == 3) {
           isDisappeared = true;
+          gp.tileManager.countBrick--;
         }
         spriteCounter = 0;
       }
