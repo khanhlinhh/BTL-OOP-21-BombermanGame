@@ -134,19 +134,19 @@ public class Bomber extends Entity {
             }
         }
 
-        if (collisionDead) {
-            spriteCounter++;
-            if (spriteCounter > 12) {
-                if (spriteNum == 1) {
-                    spriteNum = 2;
-                } else if (spriteNum == 2) {
-                    spriteNum = 3;
-                } else if (spriteNum == 3) {
-                    this.isDead = true;
-                }
-                spriteCounter = 0;
-            }
-        }
+//        if (collisionDead) {
+//            spriteCounter++;
+//            if (spriteCounter > 12) {
+//                if (spriteNum == 1) {
+//                    spriteNum = 2;
+//                } else if (spriteNum == 2) {
+//                    spriteNum = 3;
+//                } else if (spriteNum == 3) {
+//                    this.isDead = true;
+//                }
+//                spriteCounter = 0;
+//            }
+//        }
         if (keyHandler.spacePressed) {
             if (bombs.size() < numOfBomb) {
                 Sound.playsound(Sound.drop_bomb);

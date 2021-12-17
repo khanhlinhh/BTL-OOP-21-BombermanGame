@@ -17,10 +17,10 @@ import java.util.ArrayList;
 
 public class Bomb extends Item {
   public boolean exploded = false;
+  public int countExplode = 2;
   public int[] flameArea;
   Bomber bomber;
   private BufferedImage bomb1, bomb2, bomb3;
-  private int countExplode = 2;
   private Flame flame;
   private Timer timer;
   private GamePanel gp;
@@ -81,6 +81,9 @@ public class Bomb extends Item {
       Sound.playsound(Sound.bomb_explode);
       exploded = true;
       flame = new Flame(this);
+      for(Bomb bom : bomber.getBombs()){
+        if(!bom.exploded) checkBombExplosion.BombActivated(bom,this);
+      }
     } else {
       spriteCounter++;
       if (spriteCounter > 12) {
