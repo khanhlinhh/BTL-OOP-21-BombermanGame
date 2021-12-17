@@ -16,7 +16,7 @@ public class EndGame {
         this.gp = gp;
     }
 
-    public void GameOverRender(Graphics2D g2) {
+    public void GameOverRender() {
         if (bomber.isDead) {
             Sound.playsound(Sound.bomber_Die);
             Sound.playsound(Sound.gameOver);

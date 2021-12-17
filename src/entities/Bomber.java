@@ -173,6 +173,13 @@ public class Bomber extends Entity {
                 spriteCounter = 0;
             }
         }
+        if (this.isDead) {
+            EndGame endGame = new EndGame(this.gp, this);
+            endGame.GameOverRender();
+        } else  if(this.isVictory) {
+            EndGame endGame = new EndGame(this.gp,this);
+            endGame.GameVictoryRender();
+        }
     }
 
     /**
@@ -245,14 +252,6 @@ public class Bomber extends Entity {
             for (Bomb bomb : bombs) {
                 bomb.draw(g2);
             }
-        }
-        if (this.isDead) {
-            EndGame endGame = new EndGame(this.gp, this);
-            endGame.GameOverRender(g2);
-        }
-        if(this.isVictory){
-            EndGame endGame = new EndGame(this.gp,this);
-            endGame.GameVictoryRender();
         }
         if (highScore == -1) {
             // init highscore
