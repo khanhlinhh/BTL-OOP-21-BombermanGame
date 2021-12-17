@@ -6,10 +6,13 @@ public class Sprite {
   public static final char flameItemChar = 'f';
   public static final char brickChar = '*';
   public static final char coinchar = 'c';
-
   public static final char balloonChar = '1';
   public static final char onealChar = '2';
+<<<<<<< Updated upstream
   public static final char kondoriaChar = '3';
+=======
+  public static final char portalChar = 'w';
+>>>>>>> Stashed changes
 
   /*
   |--------------------------------------------------------------------------
@@ -146,4 +149,5 @@ public class Sprite {
   public static final String flameItem = "/image/tiles/powerups/powerup_flames.png";
   public static final String coin = "/image/tiles/powerups/coin.png";
   public static final String heart = "/image/tiles/powerups/heart.png";
+  public static final String portalItem = "/image/tiles/portal.png";
 }

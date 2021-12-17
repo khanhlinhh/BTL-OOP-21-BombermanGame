@@ -5,6 +5,7 @@ import entities.enemies.Balloon;
 import entities.enemies.Kondoria;
 import entities.enemies.Oneal;
 import item.Item;
+import item.Portal;
 import item.powerup.BombItem;
 import item.powerup.Coin;
 import item.powerup.FlameItem;
@@ -25,7 +26,12 @@ public class TileManager {
     public char mapTile[][];
     private GamePanel gp;
     private ArrayList<Item> items = new ArrayList<>();
+<<<<<<< Updated upstream
     public ArrayList<Entity> entities = new ArrayList<>();
+=======
+    private ArrayList<Entity> entities = new ArrayList<>();
+    public int countBrick = 0;
+>>>>>>> Stashed changes
 
     public TileManager(GamePanel gp) {
         this.gp = gp;
@@ -68,11 +74,22 @@ public class TileManager {
                         case Sprite.speedItemChar -> items.add(new SpeedItem(gp, col, row));
                         case Sprite.bombItemChar -> items.add(new BombItem(gp, col, row));
                         case Sprite.flameItemChar -> items.add(new FlameItem(gp, col, row));
-                        case Sprite.brickChar -> items.add(new Brick(gp, col, row));
+                        case Sprite.brickChar -> {
+                            items.add(new Brick(gp, col, row));
+                            countBrick++;
+                        }
                         case Sprite.coinchar -> items.add(new Coin(gp, col,row));
                         case Sprite.balloonChar -> entities.add(new Balloon(gp, col, row));
                         case Sprite.onealChar -> entities.add(new Oneal(gp, col, row));
+<<<<<<< Updated upstream
                         case Sprite.kondoriaChar -> entities.add(new Kondoria(gp,col,row));
+=======
+                        case Sprite.portalChar -> {
+                            items.add(new Portal(gp, col, row));
+                            items.add(new Brick(gp, col, row));
+                            countBrick++;
+                        }
+>>>>>>> Stashed changes
                     }
                     col++;
                 }
