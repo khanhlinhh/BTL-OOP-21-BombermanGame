@@ -8,11 +8,8 @@ public class Sprite {
   public static final char coinchar = 'c';
   public static final char balloonChar = '1';
   public static final char onealChar = '2';
-<<<<<<< Updated upstream
   public static final char kondoriaChar = '3';
-=======
   public static final char portalChar = 'w';
->>>>>>> Stashed changes
 
   /*
   |--------------------------------------------------------------------------

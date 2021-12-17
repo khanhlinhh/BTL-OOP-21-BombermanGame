@@ -26,12 +26,8 @@ public class TileManager {
     public char mapTile[][];
     private GamePanel gp;
     private ArrayList<Item> items = new ArrayList<>();
-<<<<<<< Updated upstream
     public ArrayList<Entity> entities = new ArrayList<>();
-=======
-    private ArrayList<Entity> entities = new ArrayList<>();
     public int countBrick = 0;
->>>>>>> Stashed changes
 
     public TileManager(GamePanel gp) {
         this.gp = gp;
@@ -81,15 +77,12 @@ public class TileManager {
                         case Sprite.coinchar -> items.add(new Coin(gp, col,row));
                         case Sprite.balloonChar -> entities.add(new Balloon(gp, col, row));
                         case Sprite.onealChar -> entities.add(new Oneal(gp, col, row));
-<<<<<<< Updated upstream
                         case Sprite.kondoriaChar -> entities.add(new Kondoria(gp,col,row));
-=======
                         case Sprite.portalChar -> {
                             items.add(new Portal(gp, col, row));
                             items.add(new Brick(gp, col, row));
                             countBrick++;
                         }
->>>>>>> Stashed changes
                     }
                     col++;
                 }
