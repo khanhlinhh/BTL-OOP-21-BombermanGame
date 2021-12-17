@@ -19,8 +19,8 @@ public class Sound {
 
   public static final String drop_bomb = "./res/Sound/bomSet.wav";
   public static final String bomb_explode = "./res/Sound/bombExplode.wav";
-  public static final String enemy_Die1 = "./res/Sound/enemyDie.wav";
-  public static final String enemy_Die2 = "./res/Sound/enemyDie1.wav";
+  public static final String enemy_Die = "./res/Sound/enemyDie.wav";
+  public static final String bomber_Die = "./res/Sound/BomberDie.wav";
   static Clip bg;
 
   public static void playsound(String input) {

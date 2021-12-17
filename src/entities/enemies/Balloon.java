@@ -5,6 +5,7 @@ import graphics.Sprite;
 import item.Item;
 import item.wall.Brick;
 import main.GamePanel;
+import main.Sound;
 
 import javax.imageio.ImageIO;
 import java.awt.*;
@@ -128,6 +129,9 @@ public class Balloon extends Entity {
             }
         }
         if (collisionDead) {
+            Sound.playsound(Sound.enemy_Die);
+            int score = gp.bomber.getScore() + 50;
+            gp.bomber.setScore(score);
             image = dead1;
             isDead = true;
         }
