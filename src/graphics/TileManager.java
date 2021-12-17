@@ -2,6 +2,7 @@ package graphics;
 
 import entities.Entity;
 import entities.enemies.Balloon;
+import entities.enemies.Kondoria;
 import entities.enemies.Oneal;
 import item.Item;
 import item.powerup.BombItem;
@@ -24,7 +25,7 @@ public class TileManager {
     public char mapTile[][];
     private GamePanel gp;
     private ArrayList<Item> items = new ArrayList<>();
-    private ArrayList<Entity> entities = new ArrayList<>();
+    public ArrayList<Entity> entities = new ArrayList<>();
 
     public TileManager(GamePanel gp) {
         this.gp = gp;
@@ -71,6 +72,7 @@ public class TileManager {
                         case Sprite.coinchar -> items.add(new Coin(gp, col,row));
                         case Sprite.balloonChar -> entities.add(new Balloon(gp, col, row));
                         case Sprite.onealChar -> entities.add(new Oneal(gp, col, row));
+                        case Sprite.kondoriaChar -> entities.add(new Kondoria(gp,col,row));
                     }
                     col++;
                 }

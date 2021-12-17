@@ -20,6 +20,6 @@ public class BombermanGame {
 
     gamePanel.setUpGame();
     gamePanel.startGameThread();
-    Sound.playBackGround();
+//    Sound.playBackGround();
   }
 }

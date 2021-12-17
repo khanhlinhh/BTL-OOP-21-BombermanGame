@@ -9,6 +9,7 @@ public class Sprite {
 
   public static final char balloonChar = '1';
   public static final char onealChar = '2';
+  public static final char kondoriaChar = '3';
 
   /*
   |--------------------------------------------------------------------------
@@ -75,6 +76,19 @@ public class Sprite {
   public static final String oneal_right2 = "/image/tiles/obstacle/2/oneal_right2.png";
   public static final String oneal_right3 = "/image/tiles/obstacle/2/oneal_right3.png";
   public static final String oneal_dead = "/image/tiles/obstacle/2/oneal_dead.png";
+
+  /*
+  |--------------------------------------------------------------------------
+  | Kondoria sprites
+  |--------------------------------------------------------------------------
+   */
+  public static final String kondoria_left1 = "/image/tiles/obstacle/3/kondoria_left1.png";
+  public static final String kondoria_left2 = "/image/tiles/obstacle/3/kondoria_left2.png";
+  public static final String kondoria_left3 = "/image/tiles/obstacle/3/kondoria_left3.png";
+  public static final String kondoria_right1 = "/image/tiles/obstacle/3/kondoria_right1.png";
+  public static final String kondoria_right2 = "/image/tiles/obstacle/3/kondoria_right2.png";
+  public static final String kondoria_right3 = "/image/tiles/obstacle/3/kondoria_right3.png";
+  public static final String kondoria_dead = "/image/tiles/obstacle/3/kondoria_dead.png";
 
   /*
   |--------------------------------------------------------------------------

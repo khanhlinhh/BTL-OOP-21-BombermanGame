@@ -21,7 +21,7 @@ public class Bomb extends Item {
   public int[] flameArea;
   Bomber bomber;
   private BufferedImage bomb1, bomb2, bomb3;
-  private Flame flame;
+  public Flame flame;
   private Timer timer;
   private GamePanel gp;
   private ArrayList<Item> items = new ArrayList<>();
